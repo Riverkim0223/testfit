@@ -1,0 +1,262 @@
+.card {
+  overflow: hidden;
+  width: min(100%, 430px);
+  border: 1px solid rgba(15, 23, 42, 0.09);
+  border-radius: 28px;
+  background: #ffffff;
+  box-shadow: 0 22px 60px rgba(51, 65, 85, 0.14);
+}
+
+.mediaArea {
+  position: relative;
+  min-height: 380px;
+  background: #111827;
+}
+
+.poster,
+.playerFrame,
+.embedContainer {
+  position: relative;
+  width: 100%;
+  min-height: 380px;
+  aspect-ratio: 9 / 16;
+  overflow: hidden;
+}
+
+.posterImage,
+.video,
+.iframe {
+  display: block;
+  width: 100%;
+  height: 100%;
+  border: 0;
+  object-fit: cover;
+}
+
+.generatedPoster {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  width: 100%;
+  height: 100%;
+  min-height: 380px;
+  padding: 32px 24px 84px;
+  color: white;
+  background:
+    radial-gradient(circle at 18% 18%, rgba(255, 255, 255, 0.35), transparent 26%),
+    radial-gradient(circle at 82% 28%, rgba(255, 255, 255, 0.18), transparent 24%),
+    linear-gradient(145deg, #7657ff 0%, #ee5aa7 48%, #ff9b64 100%);
+}
+
+.generatedPoster strong {
+  max-width: 12ch;
+  margin-top: 10px;
+  font-size: clamp(28px, 7vw, 44px);
+  line-height: 1.02;
+  letter-spacing: -0.045em;
+}
+
+.generatedPoster > span:last-child {
+  margin-top: 12px;
+  font-size: 15px;
+  opacity: 0.86;
+}
+
+.posterEyebrow {
+  font-size: 12px;
+  font-weight: 800;
+  letter-spacing: 0.14em;
+}
+
+.previewButton,
+.centerPlayButton {
+  position: absolute;
+  left: 50%;
+  bottom: 24px;
+  z-index: 2;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 48px;
+  padding: 0 20px;
+  border: 0;
+  border-radius: 999px;
+  color: #111827;
+  background: rgba(255, 255, 255, 0.94);
+  box-shadow: 0 12px 32px rgba(15, 23, 42, 0.22);
+  font: inherit;
+  font-weight: 800;
+  text-decoration: none;
+  cursor: pointer;
+  transform: translateX(-50%);
+  backdrop-filter: blur(12px);
+}
+
+.centerPlayButton {
+  bottom: 50%;
+  transform: translate(-50%, 50%);
+}
+
+.embedContainer {
+  overflow-y: auto;
+  padding: 10px;
+  background: #f6f7f9;
+}
+
+.embedContainer :global(.instagram-media) {
+  margin-inline: auto !important;
+}
+
+.fallbackLink {
+  display: grid;
+  place-items: center;
+  min-height: 380px;
+  padding: 28px;
+  color: #ffffff;
+  background: #111827;
+  text-align: center;
+}
+
+.body {
+  padding: 24px;
+}
+
+.headingRow {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 16px;
+}
+
+.title {
+  margin: 0;
+  color: #121826;
+  font-size: 23px;
+  line-height: 1.2;
+  letter-spacing: -0.035em;
+}
+
+.creator,
+.description,
+.reason,
+.privacyNote {
+  margin: 0;
+}
+
+.creator {
+  margin-top: 6px;
+  color: #697386;
+  font-size: 14px;
+}
+
+.score {
+  flex: 0 0 auto;
+  padding: 7px 10px;
+  border-radius: 999px;
+  color: #5b35d5;
+  background: #f0ebff;
+  font-size: 12px;
+  font-weight: 900;
+}
+
+.description {
+  margin-top: 16px;
+  color: #4b5565;
+  font-size: 15px;
+  line-height: 1.65;
+}
+
+.reason {
+  margin-top: 14px;
+  padding: 14px 16px;
+  border-radius: 16px;
+  color: #49309b;
+  background: #f5f1ff;
+  font-size: 14px;
+  font-weight: 700;
+  line-height: 1.55;
+}
+
+.tagList {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin: 18px 0 0;
+  padding: 0;
+  list-style: none;
+}
+
+.tagList li {
+  padding: 7px 10px;
+  border-radius: 999px;
+  color: #475569;
+  background: #f1f5f9;
+  font-size: 12px;
+  font-weight: 700;
+}
+
+.actions {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px;
+  margin-top: 22px;
+}
+
+.primaryLink,
+.secondaryButton {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 48px;
+  padding: 0 16px;
+  border-radius: 14px;
+  font: inherit;
+  font-size: 14px;
+  font-weight: 800;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+.primaryLink {
+  color: #ffffff;
+  background: #15171c;
+}
+
+.secondaryButton {
+  border: 1px solid #d8dee9;
+  color: #344054;
+  background: #ffffff;
+}
+
+.actions > :only-child {
+  grid-column: 1 / -1;
+}
+
+.privacyNote {
+  margin-top: 12px;
+  color: #8a94a6;
+  font-size: 11px;
+  line-height: 1.45;
+  text-align: center;
+}
+
+@media (max-width: 480px) {
+  .card {
+    border-radius: 22px;
+  }
+
+  .body {
+    padding: 20px;
+  }
+
+  .actions {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .previewButton,
+  .centerPlayButton {
+    transition: none;
+  }
+}

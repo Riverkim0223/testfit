@@ -1,0 +1,61 @@
+.page {
+  min-height: 100vh;
+  padding: 24px 18px 90px;
+  color: #171921;
+  background:
+    radial-gradient(circle at 5% 0%, rgba(109,93,251,.14), transparent 28%),
+    radial-gradient(circle at 94% 15%, rgba(255,111,174,.13), transparent 25%),
+    #f7f7fb;
+}
+.hero,
+.catalog,
+.factoryNote { width: min(100%, 1040px); margin-inline: auto; }
+.hero { overflow: hidden; padding: clamp(38px, 8vw, 80px); border-radius: 42px; color: #fff; background: radial-gradient(circle at 12% 8%, rgba(255,255,255,.34), transparent 29%), linear-gradient(145deg, #292448, #6d5dfb 55%, #ff6fae); box-shadow: 0 34px 100px rgba(43,34,91,.25); }
+.topline { display: flex; justify-content: space-between; font-size: 11px; font-weight: 950; letter-spacing: .15em; }
+.emoji { margin: 56px 0 0; font-size: clamp(58px, 9vw, 90px); }
+.hero h1 { margin: 13px 0 0; font-size: clamp(49px, 9vw, 88px); line-height: .98; letter-spacing: -.07em; }
+.hero > p:last-child { max-width: 720px; margin: 28px 0 0; font-size: clamp(17px, 2.5vw, 22px); line-height: 1.65; font-weight: 650; opacity: .9; }
+.catalog { margin-top: 64px; }
+.sectionHeading p,
+.factoryNote > div > p { margin: 0; color: #6d5dfb; font-size: 11px; font-weight: 950; letter-spacing: .15em; }
+.sectionHeading h2 { margin: 11px 0 0; font-size: clamp(31px, 5vw, 44px); letter-spacing: -.055em; }
+.grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; margin-top: 26px; }
+.card,
+.comingSoon { min-height: 460px; padding: 26px; border: 1px solid rgba(17,24,39,.08); border-radius: 28px; background: #fff; box-shadow: 0 20px 56px rgba(38,31,82,.08); }
+.card { position: relative; overflow: hidden; color: #1f2230; text-decoration: none; transition: transform .18s ease, box-shadow .18s ease; }
+.card::before { content: ""; position: absolute; inset: 0 0 auto; height: 8px; background: linear-gradient(90deg, var(--card-primary), var(--card-secondary)); }
+.card:hover { transform: translateY(-5px); box-shadow: 0 28px 70px rgba(38,31,82,.14); }
+.cardTop { display: flex; justify-content: space-between; color: #8a91a0; font-size: 10px; font-weight: 950; letter-spacing: .1em; }
+.cardTop strong { color: var(--card-primary); }
+.cardEmoji { margin-top: 48px; font-size: 66px; }
+.card h3,
+.comingSoon h3 { margin: 17px 0 0; font-size: 30px; line-height: 1.1; letter-spacing: -.05em; }
+.card > p,
+.comingSoon p { margin: 14px 0 0; color: #6f7786; font-size: 14px; line-height: 1.68; }
+.cardMeta { display: flex; gap: 8px; margin-top: 22px; }
+.cardMeta span { padding: 7px 9px; border-radius: 999px; color: var(--card-primary); background: color-mix(in srgb, var(--card-primary) 9%, white); font-size: 10px; font-weight: 900; }
+.cardCta { position: absolute; right: 26px; bottom: 26px; left: 26px; display: flex; justify-content: space-between; padding-top: 18px; border-top: 1px solid #eceef2; font-size: 13px; font-weight: 950; }
+.comingSoon { opacity: .72; background: repeating-linear-gradient(135deg, #fff, #fff 16px, #fafafe 16px, #fafafe 32px); }
+.comingSoon > span { color: #9aa0ac; font-size: 10px; font-weight: 950; letter-spacing: .13em; }
+.comingSoon > div { margin-top: 48px; font-size: 66px; filter: grayscale(.65); }
+.factoryNote { display: grid; grid-template-columns: 1fr 1.2fr; gap: 40px; align-items: center; margin-top: 70px; padding: 38px; border-radius: 30px; background: #ebe8ff; }
+.factoryNote h2 { margin: 11px 0 0; font-size: 31px; line-height: 1.25; letter-spacing: -.05em; }
+.formula { display: flex; flex-wrap: wrap; align-items: center; gap: 9px; }
+.formula span,
+.formula strong { padding: 12px 14px; border-radius: 14px; background: #fff; font-size: 12px; font-weight: 900; }
+.formula strong { color: #fff; background: #6d5dfb; }
+.formula b { color: #6d5dfb; }
+@media (max-width: 800px) {
+  .grid { grid-template-columns: 1fr 1fr; }
+  .factoryNote { grid-template-columns: 1fr; }
+}
+@media (max-width: 580px) {
+  .page { padding: 13px 12px 52px; }
+  .hero { padding: 32px 22px; border-radius: 29px; }
+  .topline span:last-child { display: none; }
+  .emoji { margin-top: 42px; }
+  .catalog { margin-top: 42px; }
+  .grid { grid-template-columns: 1fr; }
+  .card, .comingSoon { min-height: 410px; }
+  .factoryNote { margin-top: 44px; padding: 24px 20px; }
+}

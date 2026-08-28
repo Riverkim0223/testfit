@@ -1,0 +1,188 @@
+.page {
+  min-height: 100vh;
+  padding: 22px 18px 70px;
+  color: var(--test-text);
+  background:
+    radial-gradient(circle at 10% 0%, color-mix(in srgb, var(--test-primary) 18%, transparent), transparent 30%),
+    radial-gradient(circle at 90% 8%, color-mix(in srgb, var(--test-secondary) 15%, transparent), transparent 28%),
+    var(--test-bg);
+}
+
+.topbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: min(100%, 760px);
+  margin: 0 auto 24px;
+}
+
+.topbar a {
+  display: inline-flex;
+  align-items: center;
+  gap: 9px;
+  font-size: 15px;
+  font-weight: 900;
+  text-decoration: none;
+}
+
+.topbar a span { font-size: 22px; }
+.topbar button,
+.navigation button {
+  border: 0;
+  color: #667085;
+  background: transparent;
+  font-size: 13px;
+  font-weight: 800;
+  cursor: pointer;
+}
+
+.runner {
+  width: min(100%, 760px);
+  min-height: 650px;
+  margin-inline: auto;
+  padding: clamp(26px, 6vw, 54px);
+  border: 1px solid rgba(17, 24, 39, .07);
+  border-radius: 34px;
+  background: rgba(255,255,255,.94);
+  box-shadow: 0 28px 80px rgba(36, 28, 80, .12);
+}
+
+.progressRow {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  color: #7b8291;
+  font-size: 12px;
+  font-weight: 900;
+}
+
+.progressRow strong { color: var(--test-primary); }
+.progressTrack {
+  height: 8px;
+  margin-top: 10px;
+  overflow: hidden;
+  border-radius: 999px;
+  background: #edf0f4;
+}
+
+.progressTrack span {
+  display: block;
+  height: 100%;
+  border-radius: inherit;
+  background: linear-gradient(90deg, var(--test-primary), var(--test-secondary));
+  transition: width .25s ease;
+}
+
+.questionBlock { margin-top: clamp(48px, 9vw, 82px); }
+.eyebrow {
+  margin: 0;
+  color: var(--test-primary);
+  font-size: 11px;
+  font-weight: 950;
+  letter-spacing: .15em;
+  text-transform: uppercase;
+}
+
+.questionBlock h1 {
+  max-width: 650px;
+  margin: 15px 0 0;
+  font-size: clamp(30px, 6vw, 47px);
+  line-height: 1.18;
+  letter-spacing: -.055em;
+}
+
+.description {
+  margin: 14px 0 0;
+  color: #747b89;
+  font-size: 15px;
+  line-height: 1.65;
+}
+
+.options {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 14px;
+  margin-top: 34px;
+}
+
+.options[data-count="3"],
+.options[data-count="5"] { grid-template-columns: 1fr; }
+.options[data-count="4"] { grid-template-columns: 1fr 1fr; }
+
+.option {
+  display: flex;
+  align-items: flex-start;
+  gap: 14px;
+  min-height: 118px;
+  padding: 22px;
+  border: 1px solid #e5e8ef;
+  border-radius: 22px;
+  color: #252832;
+  background: #fff;
+  text-align: left;
+  cursor: pointer;
+  transition: transform .16s ease, border-color .16s ease, box-shadow .16s ease, background .16s ease;
+}
+
+.option:hover {
+  transform: translateY(-2px);
+  border-color: color-mix(in srgb, var(--test-primary) 45%, #e5e8ef);
+  box-shadow: 0 14px 34px rgba(50, 39, 105, .1);
+}
+
+.option[data-selected="true"] {
+  border-color: var(--test-primary);
+  background: color-mix(in srgb, var(--test-primary) 8%, white);
+}
+
+.optionIndex {
+  display: grid;
+  flex: 0 0 32px;
+  width: 32px;
+  height: 32px;
+  place-items: center;
+  border-radius: 10px;
+  color: var(--test-primary);
+  background: color-mix(in srgb, var(--test-primary) 11%, white);
+  font-size: 12px;
+  font-weight: 950;
+}
+
+.option strong {
+  display: block;
+  font-size: 16px;
+  line-height: 1.5;
+  letter-spacing: -.02em;
+}
+
+.option small {
+  display: block;
+  margin-top: 6px;
+  color: #7b8291;
+  font-size: 12px;
+  line-height: 1.45;
+}
+
+.navigation {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 18px;
+  margin-top: 36px;
+  padding-top: 20px;
+  border-top: 1px solid #edf0f4;
+}
+.navigation button:disabled { opacity: .35; cursor: default; }
+.navigation p { margin: 0; color: #9298a4; font-size: 12px; }
+.loading { min-height: 70vh; display: grid; place-items: center; color: #747b89; font-weight: 800; }
+
+@media (max-width: 640px) {
+  .page { padding: 14px 12px 48px; }
+  .runner { min-height: 610px; padding: 24px 18px; border-radius: 26px; }
+  .questionBlock { margin-top: 46px; }
+  .options,
+  .options[data-count="4"] { grid-template-columns: 1fr; }
+  .option { min-height: 96px; }
+  .navigation { align-items: flex-start; }
+  .navigation p { max-width: 180px; text-align: right; }
+}

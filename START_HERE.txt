@@ -1,0 +1,39 @@
+TEST FACTORY v1 시작하기
+========================
+
+1) 이 폴더를 VS Code 또는 Cursor에서 엽니다.
+
+2) 터미널에서 의존성을 설치합니다.
+   pnpm 사용:
+     corepack enable
+     pnpm install
+
+   npm 사용:
+     npm install
+
+3) 개발 서버를 실행합니다.
+     pnpm dev
+   또는
+     npm run dev
+
+4) 브라우저에서 엽니다.
+     http://localhost:3000
+
+현재 동작하는 테스트
+--------------------
+- 릴스핏: http://localhost:3000/tests/reels-fit
+- 과일상: http://localhost:3000/tests/fruit-face
+
+바로 보는 샘플 결과
+-------------------
+- 릴스핏:
+  http://localhost:3000/tests/reels-fit/result/eyJ2IjoxLCJhIjpbMSwxLDAsMSwxLDEsMSwwLDAsMSwwLDBdLCJwIjpbMSwxXX0
+
+- 과일상:
+  http://localhost:3000/tests/fruit-face/result/eyJ2IjoxLCJhIjpbMCwwLDAsMCwwLDAsMCwwLDAsMF0sInAiOltdfQ
+
+중요
+----
+- 이 버전은 DB 없이도 공유 링크가 작동하도록 답변 인덱스를 결과 URL 토큰에 담습니다.
+- 민감한 질문이나 개인정보를 결과 토큰에 넣으면 안 됩니다.
+- 배포 전 .env.local의 NEXT_PUBLIC_SITE_URL을 실제 HTTPS 도메인으로 변경하세요.

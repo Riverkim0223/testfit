@@ -1,0 +1,29 @@
+.card,
+.mediaSection {
+  margin-top: 18px;
+  padding: 28px;
+  border: 1px solid rgba(17,24,39,.08);
+  border-radius: 28px;
+  background: #fff;
+  box-shadow: 0 20px 55px rgba(37,31,81,.08);
+}
+.cardTop { display: flex; align-items: flex-start; justify-content: space-between; gap: 18px; }
+.cardTop p,
+.heading p { margin: 0; color: var(--test-primary); font-size: 11px; font-weight: 950; letter-spacing: .13em; text-transform: uppercase; }
+.cardTop h2,
+.heading h2 { margin: 9px 0 0; font-size: clamp(24px, 5vw, 34px); letter-spacing: -.045em; }
+.emoji { font-size: 42px; }
+.description { margin: 18px 0 0; color: #626a78; font-size: 14px; line-height: 1.7; }
+.colorPreview { display: flex; align-items: center; gap: 12px; margin-top: 22px; padding: 14px; border-radius: 18px; background: #f5f6f8; }
+.colorPreview span { width: 54px; height: 54px; border: 5px solid #fff; border-radius: 17px; box-shadow: 0 7px 20px rgba(31,35,48,.14); }
+.colorPreview strong { color: #555d6a; font-size: 13px; letter-spacing: .08em; }
+.badges { display: flex; flex-wrap: wrap; gap: 7px; margin: 18px 0 0; padding: 0; list-style: none; }
+.badges li { padding: 7px 10px; border-radius: 999px; color: var(--test-primary); background: color-mix(in srgb, var(--test-primary) 10%, white); font-size: 11px; font-weight: 850; }
+.heading { margin-bottom: 18px; }
+.mediaSection > article { width: min(100%, 440px); margin-inline: auto; }
+@media (max-width: 640px) {
+  .card, .mediaSection { padding: 22px 16px; border-radius: 24px; }
+  .cardTop { padding-inline: 4px; }
+  .description { padding-inline: 4px; }
+  .heading { padding-inline: 4px; }
+}
