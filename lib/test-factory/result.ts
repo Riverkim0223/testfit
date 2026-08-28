@@ -2,10 +2,39 @@ import { getTestPack } from "./registry";
 import { buildProfileRecommendations, buildReelsRecommendations } from "./recommendations";
 import { calculateScoreVector, rankProfiles } from "./scoring";
 import { decodeResultToken } from "./token";
-import type { PublicTestResult, TestTheme } from "./types";
+import type { PublicTestResult, ResultProfileDefinition, TestPack, TestTheme } from "./types";
 
 function mergeTheme(base: TestTheme, override?: Partial<TestTheme>): TestTheme {
   return { ...base, ...override };
+}
+
+function resolveResultVariant(
+  pack: TestPack,
+  preAnswers: number[],
+): string | undefined {
+  for (const [questionIndex, question] of pack.preQuestions.entries()) {
+    const selectedIndex = preAnswers[questionIndex];
+    const selectedChoice =
+      selectedIndex === undefined ? undefined : question.choices[selectedIndex];
+
+    if (selectedChoice?.resultVariant) {
+      return selectedChoice.resultVariant;
+    }
+  }
+
+  return undefined;
+}
+
+function resolveProfileIllustration(
+  profile: ResultProfileDefinition,
+  resultVariant?: string,
+) {
+  if (resultVariant) {
+    const variantIllustration = profile.illustrationVariants?.[resultVariant];
+    if (variantIllustration) return variantIllustration;
+  }
+
+  return profile.illustration;
 }
 
 export async function getPublicTestResult(
@@ -39,6 +68,12 @@ export async function getPublicTestResult(
       ? buildReelsRecommendations(pack, vector, payload, primary.profile.title)
       : buildProfileRecommendations(primary.profile);
 
+  const resultVariant = resolveResultVariant(pack, payload.preAnswers);
+  const profileIllustration = resolveProfileIllustration(
+    primary.profile,
+    resultVariant,
+  );
+
   return {
     id: resultToken,
     token: resultToken,
@@ -51,7 +86,8 @@ export async function getPublicTestResult(
     profileEmoji: primary.profile.emoji,
     profileSubtitle: primary.profile.subtitle,
     profileDescription: primary.profile.description,
-    profileIllustration: primary.profile.illustration,
+    profileIllustration,
+    resultVariant,
     strengths: primary.profile.strengths,
     shareText: primary.profile.shareText,
     fitScore: primary.score,

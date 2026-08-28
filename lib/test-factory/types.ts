@@ -29,10 +29,16 @@ export interface TestChoice {
   id: string;
   label: string;
   description?: string;
+  /**
+   * Optional visual variant selected before the scored questions.
+   * Example: "female" or "male". This does not affect scoring.
+   */
+  resultVariant?: string;
 }
 
 export interface PreQuestionDefinition {
   id: string;
+  eyebrow?: string;
   title: string;
   description?: string;
   choices: TestChoice[];
@@ -86,6 +92,11 @@ export interface ResultProfileDefinition {
   strengths: string[];
   shareText: string;
   illustration?: ProfileIllustration;
+  /**
+   * Optional result images keyed by a pre-question choice's resultVariant.
+   * Falls back to illustration when the requested variant is missing.
+   */
+  illustrationVariants?: Record<string, ProfileIllustration>;
   theme?: Partial<TestTheme>;
   recommendations?: ProfileRecommendation[];
 }
@@ -171,6 +182,7 @@ export interface PublicTestResult {
   profileSubtitle: string;
   profileDescription: string;
   profileIllustration?: ProfileIllustration;
+  resultVariant?: string;
   strengths: string[];
   shareText: string;
   fitScore: number;

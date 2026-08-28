@@ -1,11 +1,11 @@
-# Test Factory v1
+# Test Factory v1.3
 
 하나의 공통 엔진으로 여러 질문형 테스트를 운영하는 Next.js App Router 프로젝트입니다.
 
 현재 실제로 동작하는 테스트는 두 개입니다.
 
 - **릴스핏**: 12문항, 4축·6태그, 8개 결과 유형, 검증 콘텐츠 30개를 이용한 4개 추천 슬롯
-- **과일상 테스트**: 10문항, 4축, 8개 과일 유형, 컬러·스타일·궁합·반전 추천
+- **과일상 테스트**: 여성·남성 결과 일러스트 선택, 10문항, 4축, 8개 과일 유형, 컬러·스타일·궁합·반전 추천
 
 ## 실행
 
@@ -173,3 +173,54 @@ TEST_FACTORY_SHARE_FONT_URL=/fonts/your-korean-font-bold.woff2
 pnpm typecheck
 pnpm build
 ```
+
+## 릴스핏 결과 캐릭터 이미지
+
+릴스핏 8개 결과 유형은 결과 페이지와 공유 이미지에서 서로 다른 캐릭터를 사용합니다.
+
+```text
+public/images/reels-fit/profiles/
+├─ soft-cute.webp
+├─ power-performer.webp
+├─ spotlight-stealer.webp
+├─ detail-cute.webp
+├─ precision-master.webp
+├─ contrast-charmer.webp
+├─ expression-genius.webp
+└─ mood-director.webp
+```
+
+이미지 경로와 대체 텍스트는 `test-packs/reels-fit/profiles.ts`의 `illustration` 필드에서 관리합니다.
+새 결과 유형을 추가할 때도 같은 형식으로 `src`, `alt`, `objectPosition`을 등록하면 결과 페이지와 공유 이미지에 자동 반영됩니다.
+
+
+## 결과 유형별 이미지
+
+- 릴스핏 결과 이미지 8종: `public/images/reels-fit/profiles`
+- 과일상 결과 이미지 16종(여성 8·남성 8): `public/images/fruit-face/profiles`
+- 결과 페이지, Open Graph, 피드/스토리 이미지에서 동일한 캐릭터를 재사용합니다.
+
+
+## 과일상 성별별 결과 일러스트
+
+과일상 테스트 시작 시 여성 또는 남성을 선택합니다.
+
+```text
+성별 선택
+→ 10개 취향 질문
+→ 과일상 유형 계산
+→ 선택한 성별의 결과 이미지 표시
+```
+
+성별 선택은 점수 계산에 영향을 주지 않고 결과 페이지, Open Graph, 피드 저장 이미지, 스토리 저장 이미지에 사용할 인물 일러스트만 결정합니다.
+
+```text
+public/images/fruit-face/profiles/
+├─ peach-female.webp
+├─ peach-male.webp
+├─ strawberry-female.webp
+├─ strawberry-male.webp
+└─ ... 과일 8종 × 성별 2종
+```
+
+`test-packs/fruit-face/profiles.ts`의 `illustrationVariants`에서 여성·남성 이미지를 연결합니다.

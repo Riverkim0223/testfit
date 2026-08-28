@@ -9,6 +9,12 @@ import styles from "./TestResultPage.module.css";
 
 export function TestResultPage({ result }: { result: PublicTestResult }) {
   const share = buildResultSharePayload(result);
+  const illustrationVariantLabel =
+    result.resultVariant === "female"
+      ? "여성 버전"
+      : result.resultVariant === "male"
+        ? "남성 버전"
+        : "CHARACTER";
 
   return (
     <main
@@ -62,7 +68,7 @@ export function TestResultPage({ result }: { result: PublicTestResult }) {
                   priority
                   sizes="(max-width: 760px) 82vw, 320px"
                   style={{
-                    objectFit: "cover",
+                    objectFit: "contain",
                     objectPosition: result.profileIllustration.objectPosition ?? "center",
                   }}
                 />
@@ -72,7 +78,7 @@ export function TestResultPage({ result }: { result: PublicTestResult }) {
                 {result.profileEmoji}
               </div>
             )}
-            <div className={styles.visualLabel}>{result.profileTitle} CHARACTER</div>
+            <div className={styles.visualLabel}>{result.profileTitle} · {illustrationVariantLabel}</div>
           </div>
         </div>
       </section>

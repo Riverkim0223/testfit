@@ -125,7 +125,7 @@ export function TestRunner({ pack }: { pack: TestPack }) {
   const optionList = isPreQuestion ? preQuestion?.choices ?? [] : question?.options ?? [];
   const title = isPreQuestion ? preQuestion?.title : question?.text;
   const description = isPreQuestion ? preQuestion?.description : undefined;
-  const eyebrow = isPreQuestion ? "추천 조건" : question?.eyebrow ?? "취향 질문";
+  const eyebrow = isPreQuestion ? preQuestion?.eyebrow ?? "시작 설정" : question?.eyebrow ?? "취향 질문";
 
   return (
     <main
