@@ -1,17 +1,34 @@
 const LOCAL_SITE_URL = "http://localhost:3000";
 
+function cleanEnvironmentValue(value: string | undefined): string | undefined {
+  const cleaned = value?.trim();
+  return cleaned ? cleaned : undefined;
+}
+
+function toAbsoluteUrl(value: string): string {
+  return /^https?:\/\//i.test(value) ? value : `https://${value}`;
+}
+
 export function getSiteUrl(): URL {
-  const configured =
-    process.env.NEXT_PUBLIC_SITE_URL ??
-    process.env.SITE_URL ??
-    (process.env.VERCEL_URL ? `https://${process.env.VERCEL_URL}` : undefined) ??
-    LOCAL_SITE_URL;
+  const configuredSiteUrl =
+    cleanEnvironmentValue(process.env.NEXT_PUBLIC_SITE_URL) ??
+    cleanEnvironmentValue(process.env.SITE_URL);
+
+  const vercelHost =
+    cleanEnvironmentValue(process.env.VERCEL_PROJECT_PRODUCTION_URL) ??
+    cleanEnvironmentValue(process.env.VERCEL_URL);
+
+  const resolved = configuredSiteUrl
+    ? toAbsoluteUrl(configuredSiteUrl)
+    : vercelHost
+      ? toAbsoluteUrl(vercelHost)
+      : LOCAL_SITE_URL;
 
   try {
-    return new URL(configured);
+    return new URL(resolved);
   } catch {
     throw new Error(
-      `Invalid site URL: ${configured}. Set NEXT_PUBLIC_SITE_URL to an absolute URL.`,
+      `Invalid site URL: ${resolved}. Set NEXT_PUBLIC_SITE_URL to an absolute URL such as https://example.com.`,
     );
   }
 }
