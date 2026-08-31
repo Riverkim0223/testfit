@@ -1,0 +1,20 @@
+TEST PACK STUDIO v2 패치 적용
+============================
+
+1. 실행 중인 서버에서 Ctrl + C
+2. 이 ZIP의 내용을 기존 프로젝트 루트(package.json이 있는 폴더)에 덮어쓰기
+3. 터미널 실행
+
+   npm install
+   npm run validate:packs
+   npm run typecheck
+   npm run dev
+
+4. 브라우저
+   http://localhost:3000/studio
+
+중요
+----
+- 기존 test-packs/*.ts 파일은 남아 있어도 되지만 더 이상 런타임 기준 데이터가 아닙니다.
+- 앞으로 content/test-packs/*/pack.json과 Studio를 사용합니다.
+- 동물상 테스트는 draft이며 이미지 업로드와 검수 후 active로 바꿔야 공개됩니다.

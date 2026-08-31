@@ -1,17 +1,21 @@
-import { fruitFacePack } from "@/test-packs/fruit-face";
-import { reelsFitPack } from "@/test-packs/reels-fit";
+import { getStoredTestPack, listStoredTestPacks } from "./content-store.server";
 import type { TestPack } from "./types";
 
-export const testPacks = [reelsFitPack, fruitFacePack] as const;
-
-const registry = new Map<string, TestPack>(
-  testPacks.map((pack) => [pack.slug, pack]),
-);
+const hasErrors = (issues: Array<{ severity: string }>) =>
+  issues.some((issue) => issue.severity === "error");
 
 export function getTestPack(testSlug: string): TestPack | null {
-  return registry.get(testSlug) ?? null;
+  const record = getStoredTestPack(testSlug);
+  if (!record || hasErrors(record.issues)) return null;
+  return record.pack;
+}
+
+export function listTestPacks(): TestPack[] {
+  return listStoredTestPacks()
+    .filter((record) => !hasErrors(record.issues))
+    .map((record) => record.pack);
 }
 
 export function listActiveTestPacks(): TestPack[] {
-  return testPacks.filter((pack) => pack.status === "active");
+  return listTestPacks().filter((pack) => pack.status === "active");
 }

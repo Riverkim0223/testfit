@@ -59,3 +59,4 @@
   .card, .comingSoon { min-height: 410px; }
   .factoryNote { margin-top: 44px; padding: 24px 20px; }
 }
+.studioLink { display: inline-flex; margin-top: 16px; padding: 11px 14px; border-radius: 12px; color: #fff; background: #6d5dfb; font-size: 11px; font-weight: 950; text-decoration: none; }

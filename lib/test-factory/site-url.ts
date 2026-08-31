@@ -10,16 +10,14 @@ function toAbsoluteUrl(value: string): string {
 }
 
 export function getSiteUrl(): URL {
-  const configuredSiteUrl =
+  const configured =
     cleanEnvironmentValue(process.env.NEXT_PUBLIC_SITE_URL) ??
     cleanEnvironmentValue(process.env.SITE_URL);
-
   const vercelHost =
     cleanEnvironmentValue(process.env.VERCEL_PROJECT_PRODUCTION_URL) ??
     cleanEnvironmentValue(process.env.VERCEL_URL);
-
-  const resolved = configuredSiteUrl
-    ? toAbsoluteUrl(configuredSiteUrl)
+  const resolved = configured
+    ? toAbsoluteUrl(configured)
     : vercelHost
       ? toAbsoluteUrl(vercelHost)
       : LOCAL_SITE_URL;
@@ -27,9 +25,7 @@ export function getSiteUrl(): URL {
   try {
     return new URL(resolved);
   } catch {
-    throw new Error(
-      `Invalid site URL: ${resolved}. Set NEXT_PUBLIC_SITE_URL to an absolute URL such as https://example.com.`,
-    );
+    return new URL(LOCAL_SITE_URL);
   }
 }
 

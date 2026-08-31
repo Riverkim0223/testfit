@@ -1,103 +1,81 @@
-# 새 테스트 추가 가이드
+# Studio로 새 테스트 만들기
 
-## 1. 기존 Test Pack 복사
-
-예를 들어 `동물상 테스트`를 추가한다면:
+## 1. Studio 접속
 
 ```text
-test-packs/animal-face/
-├─ index.ts
-├─ questions.ts
-└─ profiles.ts
+http://localhost:3000/studio
 ```
 
-`fruit-face`를 복사하면 가장 빠릅니다.
+## 2. 시작 방식 선택
 
-## 2. 축 정의
+- **기존 테스트 복제**: 과일상처럼 구조가 비슷한 테스트에 권장
+- **빈 템플릿**: 축과 결과 구조가 완전히 다른 테스트에 사용
 
-3~5개를 권장합니다.
+예: 동물상은 과일상을 복제하면 성별 선택과 결과 이미지 구조를 그대로 재사용할 수 있습니다.
 
-```ts
-axes: [
-  { id: "WARMTH", label: "따뜻함", lowLabel: "도도함", highLabel: "다정함" },
-  { id: "ENERGY", label: "활동성", lowLabel: "차분함", highLabel: "활동적" },
-]
+## 3. 편집 순서
+
+1. 기본 정보
+2. 측정 축과 태그
+3. 사전 선택
+4. 질문과 선택지 점수
+5. 결과 유형과 기준 벡터
+6. 결과 이미지
+7. 추천 카드
+8. 디자인 테마
+9. 결과 분포 검수
+10. 프로젝트에 저장
+
+## 4. 이미지 업로드
+
+결과 유형의 이미지 영역에서 여성/남성 또는 기본 이미지를 선택합니다.
+
+```text
+PNG/JPG/WebP 선택
+→ 브라우저에서 정사각형 WebP 변환
+→ public/images/[slug]/profiles 저장
+→ pack.json 이미지 경로 반영
 ```
 
-## 3. 질문 작성
+## 5. 공개
 
-각 선택지는 축에 점수를 더하거나 뺍니다.
+검수 화면의 오류를 모두 수정하고 상태를 `active`로 변경합니다.
 
-```ts
-{
-  id: "weekend",
-  order: 1,
-  text: "주말에 더 끌리는 쪽은?",
-  options: [
-    { id: "home", label: "집에서 충전", axisScores: { ENERGY: -2 } },
-    { id: "outside", label: "밖에서 활동", axisScores: { ENERGY: 2 } },
-  ],
-}
+```bash
+npm run validate:packs
+npm run typecheck
+npm run build
+
+git add .
+git commit -m "동물상 테스트 공개"
+git push
 ```
 
-점수 범위는 꼭 `-2~2`일 필요는 없지만 한 테스트 안에서는 일관되게 유지하세요.
+## 6. 버전 관리
 
-## 4. 결과 유형 작성
+이미 공유된 결과 링크와 호환되지 않는 변경을 하면 버전을 올립니다.
 
-```ts
-{
-  id: "puppy",
-  title: "강아지상",
-  emoji: "🐶",
-  subtitle: "밝고 친근한 에너지가 먼저 보이는 타입",
-  description: "...",
-  axisTargets: { WARMTH: 85, ENERGY: 75 },
-  strengths: ["친근함", "밝은 반응", "편한 분위기"],
-  shareText: "나는 강아지상 🐶 ...",
-  recommendations: [...]
-}
-```
+- 질문 수 변경
+- 선택지 순서/개수 변경
+- 점수 기준 변경
+- 사전 질문 구조 변경
 
-`axisTargets`는 0~100 값입니다. 가능한 응답을 대량 생성해 결과가 한 유형에 몰리지 않는지 확인하는 것이 좋습니다.
+문구나 이미지만 교체하는 경우에도 공유 결과를 완전히 고정해야 한다면 버전을 올리는 편이 안전합니다.
 
-## 5. Registry 등록
+## 7. 특별한 기능이 필요한 테스트
 
-`lib/test-factory/registry.ts`에 import와 배열 항목을 추가합니다.
+Studio v2가 바로 지원하는 범위:
 
-```ts
-import { animalFacePack } from "@/test-packs/animal-face";
+- 일반 질문형 테스트
+- 성별/조건 사전 선택
+- 축·태그 점수
+- 결과 유형
+- 결과별 추천 카드
+- 성별/조건별 이미지
 
-export const testPacks = [
-  reelsFitPack,
-  fruitFacePack,
-  animalFacePack,
-] as const;
-```
+별도 엔진 확장이 필요한 범위:
 
-이것만으로 다음 공통 기능이 자동 적용됩니다.
-
-- 메인 테스트 카드
-- 테스트 소개
-- 질문 진행
-- 결과 계산
-- 결과 페이지
-- Open Graph 이미지
-- 링크 공유
-- 피드·스토리 이미지 저장
-- sitemap
-
-## 6. 추천 방식 선택
-
-일반 테스트는 결과 유형의 `recommendations`를 그대로 사용합니다.
-
-외부 콘텐츠를 점수로 매칭해야 하는 테스트는 `lib/test-factory/recommendations.ts`에 해당 Test Pack용 추천 빌더를 추가합니다.
-
-## 7. 버전 관리
-
-질문, 선택지 점수, 결과 기준을 바꾸면 `version`을 올리세요.
-
-```ts
-version: 2
-```
-
-현재 MVP는 Registry에 최신 버전만 보관합니다. 기존 공유 링크를 영구 유지해야 할 때는 버전별 Test Pack Registry 또는 DB 결과 스냅샷 저장을 추가하세요.
+- 셀카 AI 분석
+- 두 사람 동시 궁합
+- 실시간 상품/장소 API
+- 결제와 회원 저장

@@ -1,0 +1,166 @@
+{
+  "id": "new-test",
+  "slug": "new-test",
+  "version": 1,
+  "status": "draft",
+  "inputMode": "questionnaire",
+  "recommendationMode": "profile",
+  "title": "새 테스트",
+  "shortTitle": "새 테스트",
+  "subtitle": "나의 새로운 유형을 알아볼까요?",
+  "description": "질문에 답하면 나와 가까운 결과 유형을 알려줘요.",
+  "durationText": "약 1분",
+  "category": "성향 테스트",
+  "axes": [
+    {
+      "id": "AXIS_A",
+      "label": "첫 번째 성향",
+      "lowLabel": "낮은 방향",
+      "highLabel": "높은 방향"
+    },
+    {
+      "id": "AXIS_B",
+      "label": "두 번째 성향",
+      "lowLabel": "낮은 방향",
+      "highLabel": "높은 방향"
+    }
+  ],
+  "tags": [],
+  "preQuestions": [],
+  "questions": [
+    {
+      "id": "question-1",
+      "order": 1,
+      "eyebrow": "첫 질문",
+      "text": "더 가까운 쪽을 선택해 주세요.",
+      "options": [
+        {
+          "id": "question-1-a",
+          "label": "첫 번째 선택지",
+          "axisScores": {
+            "AXIS_A": -2,
+            "AXIS_B": 1
+          }
+        },
+        {
+          "id": "question-1-b",
+          "label": "두 번째 선택지",
+          "axisScores": {
+            "AXIS_A": 2,
+            "AXIS_B": -1
+          }
+        }
+      ]
+    },
+    {
+      "id": "question-2",
+      "order": 2,
+      "eyebrow": "두 번째 질문",
+      "text": "평소 모습과 더 가까운 쪽은?",
+      "options": [
+        {
+          "id": "question-2-a",
+          "label": "차분한 선택",
+          "axisScores": {
+            "AXIS_A": -1,
+            "AXIS_B": -2
+          }
+        },
+        {
+          "id": "question-2-b",
+          "label": "활동적인 선택",
+          "axisScores": {
+            "AXIS_A": 1,
+            "AXIS_B": 2
+          }
+        }
+      ]
+    }
+  ],
+  "profiles": [
+    {
+      "id": "type-a",
+      "title": "A 유형",
+      "emoji": "✨",
+      "subtitle": "첫 번째 결과 유형",
+      "description": "A 유형에 대한 상세 설명을 입력해 주세요.",
+      "axisTargets": {
+        "AXIS_A": 20,
+        "AXIS_B": 35
+      },
+      "strengths": [
+        "첫 번째 매력",
+        "두 번째 매력"
+      ],
+      "shareText": "나는 A 유형!",
+      "recommendations": [
+        {
+          "slotId": "STYLE",
+          "kicker": "추천 무드",
+          "title": "A 스타일",
+          "description": "A 유형에게 어울리는 추천입니다.",
+          "emoji": "💫"
+        }
+      ]
+    },
+    {
+      "id": "type-b",
+      "title": "B 유형",
+      "emoji": "🌟",
+      "subtitle": "두 번째 결과 유형",
+      "description": "B 유형에 대한 상세 설명을 입력해 주세요.",
+      "axisTargets": {
+        "AXIS_A": 80,
+        "AXIS_B": 65
+      },
+      "strengths": [
+        "첫 번째 장점",
+        "두 번째 장점"
+      ],
+      "shareText": "나는 B 유형!",
+      "recommendations": [
+        {
+          "slotId": "STYLE",
+          "kicker": "추천 무드",
+          "title": "B 스타일",
+          "description": "B 유형에게 어울리는 추천입니다.",
+          "emoji": "🎯"
+        }
+      ]
+    }
+  ],
+  "scoring": {
+    "axisWeight": 1,
+    "tagWeight": 0,
+    "secondaryThreshold": 7
+  },
+  "theme": {
+    "primary": "#6D5DFB",
+    "secondary": "#FF6FAE",
+    "accent": "#FCEB5C",
+    "surface": "#FFFFFF",
+    "background": "#F7F7FB",
+    "text": "#15171C",
+    "muted": "#687385",
+    "emoji": "🧪"
+  },
+  "landing": {
+    "eyebrow": "DRAFT · 2 QUESTIONS · 2 TYPES",
+    "ctaLabel": "테스트 시작하기",
+    "highlights": [
+      {
+        "value": "2",
+        "label": "질문"
+      },
+      {
+        "value": "2",
+        "label": "결과 유형"
+      },
+      {
+        "value": "1",
+        "label": "추천"
+      }
+    ],
+    "notice": "현재 제작 중인 테스트입니다."
+  }
+}

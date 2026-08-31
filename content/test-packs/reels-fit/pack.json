@@ -1,0 +1,806 @@
+{
+  "id": "reels-fit",
+  "slug": "reels-fit",
+  "version": 1,
+  "status": "active",
+  "inputMode": "questionnaire",
+  "recommendationMode": "reels-catalog",
+  "title": "릴스핏",
+  "shortTitle": "나에게 어울리는 릴스",
+  "subtitle": "지금 나에게 가장 잘 어울리는 챌린지는?",
+  "description": "12개의 취향 질문으로 숏폼 스타일을 분석하고, 찰떡 챌린지와 노래, 함께 찍기 좋은 콘텐츠까지 추천해요.",
+  "durationText": "약 2분",
+  "category": "취향 · 숏폼",
+  "axes": [
+    {
+      "id": "ENERGY",
+      "label": "에너지",
+      "lowLabel": "말랑함",
+      "highLabel": "파워풀함"
+    },
+    {
+      "id": "SPOTLIGHT",
+      "label": "존재감",
+      "lowLabel": "자연스러움",
+      "highLabel": "시선 집중"
+    },
+    {
+      "id": "MOTION",
+      "label": "안무 성향",
+      "lowLabel": "표정·손동작",
+      "highLabel": "전신 안무"
+    },
+    {
+      "id": "PRODUCTION",
+      "label": "연출 욕구",
+      "lowLabel": "원테이크",
+      "highLabel": "소품·편집"
+    }
+  ],
+  "tags": [
+    {
+      "id": "CUTE",
+      "label": "귀여움"
+    },
+    {
+      "id": "EXPRESSION",
+      "label": "표현력"
+    },
+    {
+      "id": "PRECISION",
+      "label": "완성도"
+    },
+    {
+      "id": "TRANSITION",
+      "label": "반전·전환"
+    },
+    {
+      "id": "DETAIL",
+      "label": "디테일"
+    },
+    {
+      "id": "MOOD",
+      "label": "무드"
+    }
+  ],
+  "preQuestions": [
+    {
+      "id": "participant",
+      "title": "누구와 찍을 예정인가요?",
+      "description": "함께 찍기 좋은 챌린지를 고를 때 사용해요.",
+      "choices": [
+        {
+          "id": "solo",
+          "label": "혼자",
+          "description": "나만의 장면으로"
+        },
+        {
+          "id": "friend",
+          "label": "친구 한 명과",
+          "description": "둘이 타이밍 맞추기"
+        },
+        {
+          "id": "couple",
+          "label": "연인과",
+          "description": "커플·2인 포맷"
+        },
+        {
+          "id": "group",
+          "label": "여러 명과",
+          "description": "그룹 퍼포먼스"
+        },
+        {
+          "id": "undecided",
+          "label": "아직 모르겠어요",
+          "description": "취향부터 확인하기"
+        }
+      ]
+    },
+    {
+      "id": "difficulty",
+      "title": "어느 정도 난이도가 좋나요?",
+      "description": "너무 어렵지 않은 콘텐츠를 추천하기 위한 조건이에요.",
+      "choices": [
+        {
+          "id": "1",
+          "label": "표정·손동작만",
+          "description": "연습 없이 바로"
+        },
+        {
+          "id": "2",
+          "label": "쉬운 포인트 안무",
+          "description": "몇 번 보면 가능"
+        },
+        {
+          "id": "3",
+          "label": "조금 연습할 수 있어요",
+          "description": "일반 챌린지 안무"
+        },
+        {
+          "id": "4",
+          "label": "어려워도 제대로",
+          "description": "고난도 퍼포먼스"
+        }
+      ]
+    }
+  ],
+  "questions": [
+    {
+      "id": "shoot-ready",
+      "order": 1,
+      "eyebrow": "촬영 준비",
+      "text": "촬영 버튼을 누르기 직전, 더 마음이 편한 쪽은?",
+      "options": [
+        {
+          "id": "natural-first-take",
+          "label": "일단 한 번 찍어보고 자연스러운 장면을 건진다.",
+          "axisScores": {
+            "PRODUCTION": -2
+          }
+        },
+        {
+          "id": "plan-before-shoot",
+          "label": "음악을 몇 번 들어보고 포인트와 순서를 맞춘다.",
+          "axisScores": {
+            "PRODUCTION": 2
+          },
+          "tagScores": {
+            "PRECISION": 1
+          }
+        }
+      ]
+    },
+    {
+      "id": "chorus-energy",
+      "order": 2,
+      "eyebrow": "에너지",
+      "text": "후렴 10초를 내 장면으로 만든다면?",
+      "options": [
+        {
+          "id": "big-movement",
+          "label": "비트에 맞춰 크게 움직이며 화면을 꽉 채운다.",
+          "axisScores": {
+            "ENERGY": 2,
+            "MOTION": 1
+          }
+        },
+        {
+          "id": "soft-expression",
+          "label": "고개와 어깨, 표정만으로 분위기를 살린다.",
+          "axisScores": {
+            "ENERGY": -2,
+            "MOTION": -1
+          },
+          "tagScores": {
+            "CUTE": 1,
+            "EXPRESSION": 1
+          }
+        }
+      ]
+    },
+    {
+      "id": "group-role",
+      "order": 3,
+      "eyebrow": "존재감",
+      "text": "친구들과 함께 찍을 때 더 끌리는 역할은?",
+      "options": [
+        {
+          "id": "killing-part",
+          "label": "기억에 남는 킬링 파트를 맡는다.",
+          "axisScores": {
+            "SPOTLIGHT": 2
+          },
+          "tagScores": {
+            "EXPRESSION": 1
+          }
+        },
+        {
+          "id": "natural-flow",
+          "label": "다 같이 자연스럽게 어울리는 흐름을 만든다.",
+          "axisScores": {
+            "SPOTLIGHT": -2
+          }
+        }
+      ]
+    },
+    {
+      "id": "camera-frame",
+      "order": 4,
+      "eyebrow": "촬영 구도",
+      "text": "완성된 영상에서 더 보고 싶은 구도는?",
+      "options": [
+        {
+          "id": "full-body",
+          "label": "발끝까지 동작이 보이는 넓은 화면",
+          "axisScores": {
+            "MOTION": 2
+          },
+          "tagScores": {
+            "PRECISION": 1
+          }
+        },
+        {
+          "id": "close-up",
+          "label": "얼굴과 손동작이 잘 보이는 가까운 화면",
+          "axisScores": {
+            "MOTION": -2
+          },
+          "tagScores": {
+            "EXPRESSION": 2
+          }
+        }
+      ]
+    },
+    {
+      "id": "hard-challenge",
+      "order": 5,
+      "eyebrow": "완성 방식",
+      "text": "마음에 든 챌린지가 조금 어렵다면?",
+      "options": [
+        {
+          "id": "repeat-original",
+          "label": "원본 동작을 반복해서 최대한 정확히 맞춘다.",
+          "axisScores": {
+            "MOTION": 1
+          },
+          "tagScores": {
+            "PRECISION": 2
+          }
+        },
+        {
+          "id": "adapt-highlight",
+          "label": "재미있는 포인트만 골라 내 방식으로 바꾼다.",
+          "axisScores": {
+            "MOTION": -1
+          },
+          "tagScores": {
+            "EXPRESSION": 1
+          }
+        }
+      ]
+    },
+    {
+      "id": "outfit",
+      "order": 6,
+      "eyebrow": "의상",
+      "text": "촬영 의상을 고른다면?",
+      "options": [
+        {
+          "id": "statement-transition",
+          "label": "한눈에 들어오는 포인트 의상이나 변신 구성을 준비한다.",
+          "axisScores": {
+            "SPOTLIGHT": 1,
+            "PRODUCTION": 1
+          },
+          "tagScores": {
+            "TRANSITION": 2
+          }
+        },
+        {
+          "id": "natural-style",
+          "label": "평소 스타일을 살려 영상 분위기와 자연스럽게 맞춘다.",
+          "axisScores": {
+            "SPOTLIGHT": -1,
+            "PRODUCTION": -1
+          },
+          "tagScores": {
+            "MOOD": 1
+          }
+        }
+      ]
+    },
+    {
+      "id": "favorite-comment",
+      "order": 7,
+      "eyebrow": "반응",
+      "text": "영상에 달리면 더 기분 좋은 댓글은?",
+      "options": [
+        {
+          "id": "great-vibe",
+          "label": "영상 분위기가 너무 좋다.",
+          "axisScores": {
+            "SPOTLIGHT": -2
+          },
+          "tagScores": {
+            "MOOD": 1
+          }
+        },
+        {
+          "id": "only-you",
+          "label": "영상에서 너밖에 안 보인다.",
+          "axisScores": {
+            "SPOTLIGHT": 2
+          },
+          "tagScores": {
+            "EXPRESSION": 1
+          }
+        }
+      ]
+    },
+    {
+      "id": "location",
+      "order": 8,
+      "eyebrow": "공간",
+      "text": "촬영 장소는 어떻게 고를까?",
+      "options": [
+        {
+          "id": "concept-location",
+          "label": "노래와 콘셉트에 맞는 배경과 작은 소품을 찾는다.",
+          "axisScores": {
+            "PRODUCTION": 2
+          },
+          "tagScores": {
+            "DETAIL": 1,
+            "MOOD": 1
+          }
+        },
+        {
+          "id": "shoot-here",
+          "label": "지금 있는 곳에서 바로 찍을 수 있으면 충분하다.",
+          "axisScores": {
+            "PRODUCTION": -2
+          }
+        }
+      ]
+    },
+    {
+      "id": "one-more-element",
+      "order": 9,
+      "eyebrow": "디테일",
+      "text": "영상에 딱 하나만 더할 수 있다면?",
+      "options": [
+        {
+          "id": "lighting-color",
+          "label": "조명과 색감, 배경으로 전체 분위기를 만든다.",
+          "tagScores": {
+            "MOOD": 2
+          }
+        },
+        {
+          "id": "cute-detail",
+          "label": "작은 소품이나 귀여운 자막으로 포인트를 준다.",
+          "tagScores": {
+            "CUTE": 2,
+            "DETAIL": 2
+          }
+        }
+      ]
+    },
+    {
+      "id": "audio-point",
+      "order": 10,
+      "eyebrow": "오디오",
+      "text": "더 끌리는 오디오 포인트는?",
+      "options": [
+        {
+          "id": "beat-drop",
+          "label": "비트가 터지는 순간에 동작이 크게 바뀌는 구간",
+          "axisScores": {
+            "ENERGY": 1,
+            "MOTION": 1
+          },
+          "tagScores": {
+            "TRANSITION": 1
+          }
+        },
+        {
+          "id": "lyric-expression",
+          "label": "가사나 대사에 맞춰 표정이 바뀌는 구간",
+          "axisScores": {
+            "ENERGY": -1,
+            "MOTION": -1
+          },
+          "tagScores": {
+            "EXPRESSION": 2
+          }
+        }
+      ]
+    },
+    {
+      "id": "retake-standard",
+      "order": 11,
+      "eyebrow": "촬영 완료",
+      "text": "다시 찍을지 말지 결정하는 기준은?",
+      "options": [
+        {
+          "id": "natural-enough",
+          "label": "조금 틀려도 표정과 분위기가 자연스러우면 끝낸다.",
+          "tagScores": {
+            "EXPRESSION": 1,
+            "MOOD": 1
+          }
+        },
+        {
+          "id": "one-more-time",
+          "label": "박자와 각도가 맞을 때까지 한 번 더 찍는다.",
+          "tagScores": {
+            "PRECISION": 2
+          }
+        }
+      ]
+    },
+    {
+      "id": "video-flow",
+      "order": 12,
+      "eyebrow": "최종 무드",
+      "text": "더 찍어보고 싶은 영상 흐름은?",
+      "options": [
+        {
+          "id": "contrast-turn",
+          "label": "차분하게 시작했다가 한순간 분위기가 뒤집히는 구성",
+          "axisScores": {
+            "ENERGY": 1,
+            "SPOTLIGHT": 1
+          },
+          "tagScores": {
+            "TRANSITION": 2
+          }
+        },
+        {
+          "id": "soft-all-way",
+          "label": "처음부터 끝까지 부드럽고 사랑스러운 무드를 유지하는 구성",
+          "axisScores": {
+            "ENERGY": -1,
+            "SPOTLIGHT": -1
+          },
+          "tagScores": {
+            "MOOD": 2,
+            "CUTE": 1
+          }
+        }
+      ]
+    }
+  ],
+  "profiles": [
+    {
+      "id": "soft-cute",
+      "title": "말랑 큐티형",
+      "emoji": "🫧",
+      "subtitle": "큰 동작보다 한 번의 귀여운 포인트가 더 강한 타입",
+      "description": "복잡한 안무보다 자연스러운 표정과 작은 손동작을 잘 살려요. 밝은 오디오와 가까운 구도에서 매력이 편안하게 드러나요.",
+      "axisTargets": {
+        "ENERGY": 25,
+        "SPOTLIGHT": 35,
+        "MOTION": 20,
+        "PRODUCTION": 30
+      },
+      "tagTargets": {
+        "CUTE": {
+          "value": 90,
+          "weight": 0.65
+        },
+        "EXPRESSION": {
+          "value": 60,
+          "weight": 0.35
+        }
+      },
+      "strengths": [
+        "귀여운 포인트",
+        "쉬운 손동작",
+        "자연스러운 표정"
+      ],
+      "shareText": "나는 말랑 큐티형 🫧 큰 동작 없이도 귀여운 포인트로 챌린지 완성!",
+      "illustration": {
+        "src": "/images/reels-fit/profiles/soft-cute.webp",
+        "alt": "스마트폰을 들고 가볍게 춤추는 말랑 큐티형 캐릭터",
+        "objectPosition": "center"
+      },
+      "theme": {
+        "primary": "#FF7AA8",
+        "secondary": "#FFB86B",
+        "accent": "#FFF06A",
+        "emoji": "🫧"
+      }
+    },
+    {
+      "id": "power-performer",
+      "title": "파워 퍼포머형",
+      "emoji": "⚡",
+      "subtitle": "에너지로 화면을 꽉 채우는 무대 체질",
+      "description": "빠른 비트와 큰 동작에서 매력이 살아나요. 완벽한 각도보다는 힘과 현장감으로 보는 사람의 시선을 붙잡는 편이에요.",
+      "axisTargets": {
+        "ENERGY": 90,
+        "SPOTLIGHT": 65,
+        "MOTION": 85,
+        "PRODUCTION": 30
+      },
+      "tagTargets": {
+        "PRECISION": {
+          "value": 25,
+          "weight": 0.7
+        },
+        "TRANSITION": {
+          "value": 20,
+          "weight": 0.3
+        }
+      },
+      "strengths": [
+        "큰 에너지",
+        "전신 안무",
+        "무대 장악력"
+      ],
+      "shareText": "나는 파워 퍼포머형 ⚡ 비트가 시작되면 화면을 꽉 채우는 타입!",
+      "illustration": {
+        "src": "/images/reels-fit/profiles/power-performer.webp",
+        "alt": "헤드폰을 쓰고 힘차게 춤추는 파워 퍼포머형 캐릭터",
+        "objectPosition": "center"
+      },
+      "theme": {
+        "primary": "#FF5B45",
+        "secondary": "#FFB000",
+        "accent": "#FFF3A3",
+        "emoji": "⚡"
+      }
+    },
+    {
+      "id": "spotlight-stealer",
+      "title": "시선 강탈형",
+      "emoji": "✨",
+      "subtitle": "짧은 영상도 내 킬링 파트로 바꾸는 타입",
+      "description": "포즈, 의상 변화, 카메라 워킹처럼 한눈에 들어오는 장치를 잘 활용해요. 한 장면 안에서도 존재감을 분명하게 남기는 편이에요.",
+      "axisTargets": {
+        "ENERGY": 70,
+        "SPOTLIGHT": 90,
+        "MOTION": 55,
+        "PRODUCTION": 80
+      },
+      "tagTargets": {
+        "TRANSITION": {
+          "value": 90,
+          "weight": 0.65
+        },
+        "EXPRESSION": {
+          "value": 65,
+          "weight": 0.35
+        }
+      },
+      "strengths": [
+        "킬링 파트",
+        "의상 전환",
+        "강한 포즈"
+      ],
+      "shareText": "나는 시선 강탈형 ✨ 짧은 영상이어도 킬링 파트는 내가 맡아야 해!",
+      "illustration": {
+        "src": "/images/reels-fit/profiles/spotlight-stealer.webp",
+        "alt": "스포트라이트 아래 자신 있게 포즈를 취하는 시선 강탈형 캐릭터",
+        "objectPosition": "center"
+      },
+      "theme": {
+        "primary": "#6D5DFB",
+        "secondary": "#E456FF",
+        "accent": "#FCEB5C",
+        "emoji": "✨"
+      }
+    },
+    {
+      "id": "detail-cute",
+      "title": "아기자기 디테일형",
+      "emoji": "🎀",
+      "subtitle": "작은 소품과 타이밍을 놓치지 않는 타입",
+      "description": "소품, 자막, 친구와 맞추는 작은 타이밍처럼 디테일에서 재미를 만들어요. 귀엽고 정성스러운 화면 구성이 잘 어울려요.",
+      "axisTargets": {
+        "ENERGY": 30,
+        "SPOTLIGHT": 40,
+        "MOTION": 20,
+        "PRODUCTION": 85
+      },
+      "tagTargets": {
+        "DETAIL": {
+          "value": 100,
+          "weight": 0.65
+        },
+        "CUTE": {
+          "value": 75,
+          "weight": 0.35
+        }
+      },
+      "strengths": [
+        "작은 소품",
+        "귀여운 편집",
+        "타이밍 연출"
+      ],
+      "shareText": "나는 아기자기 디테일형 🎀 작은 포인트까지 챙겨야 영상이 완성돼!",
+      "illustration": {
+        "src": "/images/reels-fit/profiles/detail-cute.webp",
+        "alt": "리본과 스티커 소품을 꾸미는 아기자기 디테일형 캐릭터",
+        "objectPosition": "center"
+      },
+      "theme": {
+        "primary": "#FF76B8",
+        "secondary": "#9C7BFF",
+        "accent": "#FFF5A8",
+        "emoji": "🎀"
+      }
+    },
+    {
+      "id": "precision-master",
+      "title": "칼각 완성형",
+      "emoji": "🎯",
+      "subtitle": "연습한 만큼 정확한 장면을 만드는 타입",
+      "description": "박자와 각도, 동선을 맞추는 과정 자체를 즐겨요. 어렵더라도 원본 안무를 제대로 재현했을 때 가장 큰 만족을 느끼는 편이에요.",
+      "axisTargets": {
+        "ENERGY": 90,
+        "SPOTLIGHT": 70,
+        "MOTION": 95,
+        "PRODUCTION": 60
+      },
+      "tagTargets": {
+        "PRECISION": {
+          "value": 100,
+          "weight": 1
+        }
+      },
+      "strengths": [
+        "반복 연습",
+        "정확한 박자",
+        "높은 완성도"
+      ],
+      "shareText": "나는 칼각 완성형 🎯 만족할 때까지 한 번 더! 정확한 안무가 제일 멋져.",
+      "illustration": {
+        "src": "/images/reels-fit/profiles/precision-master.webp",
+        "alt": "동작선을 맞추며 정확한 자세를 연습하는 칼각 완성형 캐릭터",
+        "objectPosition": "center"
+      },
+      "theme": {
+        "primary": "#235BDE",
+        "secondary": "#26B7D8",
+        "accent": "#D9FF5B",
+        "emoji": "🎯"
+      }
+    },
+    {
+      "id": "contrast-charmer",
+      "title": "반전 매력형",
+      "emoji": "🪄",
+      "subtitle": "부드럽게 시작해 한순간 분위기를 뒤집는 타입",
+      "description": "차분한 첫인상 뒤에 강한 표정이나 전환을 숨겨두는 구성이 잘 맞아요. 예상하지 못한 한 장면으로 기억에 남는 편이에요.",
+      "axisTargets": {
+        "ENERGY": 35,
+        "SPOTLIGHT": 90,
+        "MOTION": 30,
+        "PRODUCTION": 65
+      },
+      "tagTargets": {
+        "TRANSITION": {
+          "value": 100,
+          "weight": 0.7
+        },
+        "EXPRESSION": {
+          "value": 75,
+          "weight": 0.3
+        }
+      },
+      "strengths": [
+        "비트 드롭",
+        "표정 반전",
+        "변신 전환"
+      ],
+      "shareText": "나는 반전 매력형 🪄 차분한 줄 알았지? 한 장면으로 분위기를 뒤집는 타입!",
+      "illustration": {
+        "src": "/images/reels-fit/profiles/contrast-charmer.webp",
+        "alt": "밝고 시크한 두 가지 분위기를 함께 가진 반전 매력형 캐릭터",
+        "objectPosition": "center"
+      },
+      "theme": {
+        "primary": "#20243A",
+        "secondary": "#EE4D88",
+        "accent": "#72F2D0",
+        "emoji": "🪄"
+      }
+    },
+    {
+      "id": "expression-genius",
+      "title": "표정 천재형",
+      "emoji": "😏",
+      "subtitle": "큰 동작 없이도 표정 하나로 장면을 만드는 타입",
+      "description": "카메라 가까이에서 가사와 대사의 타이밍을 살리는 데 강해요. 립싱크, POV, 밈 오디오처럼 표정 변화가 핵심인 콘텐츠가 잘 맞아요.",
+      "axisTargets": {
+        "ENERGY": 45,
+        "SPOTLIGHT": 75,
+        "MOTION": 10,
+        "PRODUCTION": 30
+      },
+      "tagTargets": {
+        "EXPRESSION": {
+          "value": 100,
+          "weight": 0.8
+        },
+        "CUTE": {
+          "value": 25,
+          "weight": 0.2
+        }
+      },
+      "strengths": [
+        "립싱크",
+        "표정 변화",
+        "클로즈업"
+      ],
+      "shareText": "나는 표정 천재형 😏 전신 안무 없이도 표정 하나면 장면 완성!",
+      "illustration": {
+        "src": "/images/reels-fit/profiles/expression-genius.webp",
+        "alt": "카메라 앞에서 생동감 있는 표정을 짓는 표정 천재형 캐릭터",
+        "objectPosition": "center"
+      },
+      "theme": {
+        "primary": "#6D5DFB",
+        "secondary": "#FF6FAE",
+        "accent": "#FCEB5C",
+        "emoji": "😏"
+      }
+    },
+    {
+      "id": "mood-director",
+      "title": "무드 연출가형",
+      "emoji": "🎬",
+      "subtitle": "공간과 색감까지 하나의 장면으로 만드는 타입",
+      "description": "춤 자체보다 조명, 배경, 음악의 연결에 더 민감해요. 차분한 몽타주나 시네마틱 편집처럼 영상 전체의 분위기를 만드는 데 강해요.",
+      "axisTargets": {
+        "ENERGY": 30,
+        "SPOTLIGHT": 50,
+        "MOTION": 25,
+        "PRODUCTION": 95
+      },
+      "tagTargets": {
+        "MOOD": {
+          "value": 100,
+          "weight": 0.8
+        },
+        "DETAIL": {
+          "value": 35,
+          "weight": 0.2
+        }
+      },
+      "strengths": [
+        "공간 연출",
+        "색감과 조명",
+        "감성 편집"
+      ],
+      "shareText": "나는 무드 연출가형 🎬 공간과 색감까지 맞아야 진짜 내 영상!",
+      "illustration": {
+        "src": "/images/reels-fit/profiles/mood-director.webp",
+        "alt": "카메라와 색감 보드를 들고 장면을 연출하는 무드 연출가형 캐릭터",
+        "objectPosition": "center"
+      },
+      "theme": {
+        "primary": "#4158D0",
+        "secondary": "#7A6CF6",
+        "accent": "#F8D16D",
+        "emoji": "🎬"
+      }
+    }
+  ],
+  "scoring": {
+    "axisWeight": 0.75,
+    "tagWeight": 0.25,
+    "secondaryThreshold": 6
+  },
+  "theme": {
+    "primary": "#6D5DFB",
+    "secondary": "#FF6FAE",
+    "accent": "#FCEB5C",
+    "surface": "#FFFFFF",
+    "background": "#F7F7FB",
+    "text": "#15171C",
+    "muted": "#687385",
+    "emoji": "🎵"
+  },
+  "landing": {
+    "eyebrow": "12 QUESTIONS · 8 TYPES",
+    "ctaLabel": "내 릴스 취향 알아보기",
+    "highlights": [
+      {
+        "value": "12",
+        "label": "취향 질문"
+      },
+      {
+        "value": "8",
+        "label": "결과 유형"
+      },
+      {
+        "value": "4",
+        "label": "맞춤 추천"
+      }
+    ],
+    "notice": "결과는 재미와 콘텐츠 추천을 위한 참고용이에요."
+  }
+}

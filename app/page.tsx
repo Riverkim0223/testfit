@@ -1,10 +1,13 @@
 import type { CSSProperties } from "react";
 import Link from "next/link";
 import { listActiveTestPacks } from "@/lib/test-factory/registry";
+import { isTestStudioEnabled } from "@/lib/test-factory/studio";
 import styles from "./page.module.css";
 
 export default function HomePage() {
   const tests = listActiveTestPacks();
+  const studioEnabled = isTestStudioEnabled();
+  const animalFaceIsActive = tests.some((pack) => pack.slug === "animal-face");
   return (
     <main className={styles.page}>
       <section className={styles.hero}>
@@ -35,18 +38,20 @@ export default function HomePage() {
               <div className={styles.cardCta}>테스트 시작하기 <span>→</span></div>
             </Link>
           ))}
-          <article className={styles.comingSoon}>
-            <span>COMING SOON</span>
-            <div>🐾</div>
-            <h3>동물상 테스트</h3>
-            <p>같은 엔진에 질문·결과 데이터만 추가해 새로운 테스트를 계속 만들 수 있어요.</p>
-          </article>
+          {!animalFaceIsActive ? (
+            <article className={styles.comingSoon}>
+              <span>COMING SOON</span>
+              <div>🐾</div>
+              <h3>동물상 테스트</h3>
+              <p>Test Pack Studio에서 질문·결과·이미지를 입력해 공개할 수 있어요.</p>
+            </article>
+          ) : null}
         </div>
       </section>
 
       <section className={styles.factoryNote}>
         <div><p>ONE ENGINE, MANY TESTS</p><h2>공통 엔진으로 다양한 테스트를 생산하는 구조</h2></div>
-        <div className={styles.formula}><span>질문 데이터</span><b>+</b><span>결과 유형</span><b>+</b><span>테마·추천</span><b>=</b><strong>새 테스트</strong></div>
+        <div><div className={styles.formula}><span>질문 데이터</span><b>+</b><span>결과 유형</span><b>+</b><span>테마·추천</span><b>=</b><strong>새 테스트</strong></div>{studioEnabled ? <Link className={styles.studioLink} href="/studio">로컬 Studio 열기 →</Link> : null}</div>
       </section>
     </main>
   );

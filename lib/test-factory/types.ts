@@ -1,5 +1,6 @@
 export type TestStatus = "active" | "draft";
 export type TestInputMode = "questionnaire";
+export type RecommendationMode = "profile" | "reels-catalog";
 
 export interface TestTheme {
   primary: string;
@@ -120,6 +121,7 @@ export interface TestPack {
   version: number;
   status: TestStatus;
   inputMode: TestInputMode;
+  recommendationMode?: RecommendationMode;
   title: string;
   shortTitle: string;
   subtitle: string;

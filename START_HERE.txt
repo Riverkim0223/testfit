@@ -1,41 +1,41 @@
-TEST FACTORY v1.3 시작하기
+TEST FACTORY v2 시작하기
 ========================
 
 1) 이 폴더를 VS Code 또는 Cursor에서 엽니다.
 
-2) 터미널에서 의존성을 설치합니다.
-   pnpm 사용:
-     corepack enable
-     pnpm install
-
-   npm 사용:
-     npm install
+2) 설치합니다.
+   npm install
 
 3) 개발 서버를 실행합니다.
-     pnpm dev
-   또는
-     npm run dev
+   npm run dev
 
-4) 브라우저에서 엽니다.
-     http://localhost:3000
+4) 브라우저에서 확인합니다.
+   서비스: http://localhost:3000
+   제작 도구: http://localhost:3000/studio
 
-현재 동작하는 테스트
---------------------
-- 릴스핏: http://localhost:3000/tests/reels-fit
-- 과일상: http://localhost:3000/tests/fruit-face
+현재 테스트팩
+-------------
+- 릴스핏: 공개
+- 과일상: 공개
+- 동물상: 초안 (Studio에서 편집 후 공개)
 
-바로 보는 샘플 결과
--------------------
-- 릴스핏:
-  http://localhost:3000/tests/reels-fit/result/eyJ2IjoxLCJhIjpbMSwxLDAsMSwxLDEsMSwwLDAsMSwwLDBdLCJwIjpbMSwxXX0
+새 테스트 만들기
+----------------
+/studio에서 기존 테스트 복제 또는 빈 템플릿을 선택합니다.
+질문·결과·이미지를 저장하면 content/test-packs와 public/images가 변경됩니다.
 
-- 과일상 여성 버전 샘플:
-  http://localhost:3000/tests/fruit-face/result/eyJ2IjoyLCJhIjpbMCwwLDAsMCwwLDAsMCwwLDAsMF0sInAiOlswXX0
+배포
+----
+npm run validate:packs
+npm run typecheck
+npm run build
+
+git add .
+git commit -m "새 테스트 추가"
+git push
 
 중요
 ----
-- 이 버전은 DB 없이도 공유 링크가 작동하도록 답변 인덱스를 결과 URL 토큰에 담습니다.
-- 민감한 질문이나 개인정보를 결과 토큰에 넣으면 안 됩니다.
-- 배포 전 .env.local의 NEXT_PUBLIC_SITE_URL을 실제 HTTPS 도메인으로 변경하세요.
-
-- 과일상은 시작 시 여성 또는 남성 결과 일러스트를 선택합니다.
+- Studio는 로컬 전용입니다. Vercel에서는 열리지 않습니다.
+- NEXT_PUBLIC_SITE_URL=https://testfit-black.vercel.app 를 Vercel 환경 변수로 설정하세요.
+- 결과 URL 토큰은 암호화가 아니므로 민감정보를 질문에 넣지 마세요.

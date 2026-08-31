@@ -78,3 +78,13 @@
 ## 주의
 
 현재 Trend Score와 콘텐츠 축·태그 값은 초기 편집값입니다. 실제 클릭률, 완료율, 공유율이 쌓이면 가중치와 콘텐츠 점수를 다시 보정해야 합니다.
+
+## Test Pack Studio v2
+
+- JSON 테스트팩 3종 로딩 확인
+- 릴스핏·과일상 기존 결과 분포 유지
+- 동물상 draft 1,024개 응답 조합 전수 검사, 8개 유형 모두 생성
+- `npm run validate:packs` 통과
+- Studio 포함 TypeScript 검증 통과
+- Vercel 빈 SITE URL 폴백 보강
+- Studio는 Vercel 환경에서 비활성화

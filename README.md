@@ -1,21 +1,17 @@
-# Test Factory v1.3
+# Test Factory v2 — Local Test Pack Studio
 
-하나의 공통 엔진으로 여러 질문형 테스트를 운영하는 Next.js App Router 프로젝트입니다.
+하나의 Next.js 공통 엔진으로 릴스핏, 과일상, 동물상 같은 질문형 테스트를 반복 생산하는 프로젝트입니다.
 
-현재 실제로 동작하는 테스트는 두 개입니다.
+## 현재 구성
 
-- **릴스핏**: 12문항, 4축·6태그, 8개 결과 유형, 검증 콘텐츠 30개를 이용한 4개 추천 슬롯
-- **과일상 테스트**: 여성·남성 결과 일러스트 선택, 10문항, 4축, 8개 과일 유형, 컬러·스타일·궁합·반전 추천
+- **릴스핏**: 공개, 12문항·8유형·릴스/오디오 추천
+- **과일상 테스트**: 공개, 여성/남성 결과 이미지, 10문항·8유형
+- **동물상 테스트**: 초안, 10문항·8유형, Studio에서 문구·점수·이미지 검수 후 공개
+- **Test Pack Studio**: 로컬에서 질문, 점수, 결과, 추천, 이미지, 테마를 편집하고 JSON에 저장
 
 ## 실행
 
-```bash
-corepack enable
-pnpm install
-pnpm dev
-```
-
-npm을 사용하는 경우:
+Windows 권한 문제를 피하려면 npm을 권장합니다.
 
 ```bash
 npm install
@@ -25,202 +21,99 @@ npm run dev
 브라우저:
 
 ```text
-http://localhost:3000
+http://localhost:3000          서비스 화면
+http://localhost:3000/studio   로컬 Test Pack Studio
 ```
 
-## 구현된 사용자 흐름
+## Studio 사용 흐름
 
 ```text
-테스트 목록
-→ 테스트 소개
-→ 사전 조건(필요한 테스트만)
-→ 질문 진행
-→ 점수 계산
-→ 결과 유형 판정
-→ 추천 콘텐츠
-→ 링크 공유
-→ 피드·스토리 이미지 저장
+/studio 접속
+→ 기존 테스트 복제 또는 빈 템플릿 생성
+→ 기본 정보·축·질문·결과 유형 입력
+→ 성별/조건별 이미지 업로드
+→ 결과 분포와 누락 검사
+→ 프로젝트에 저장
+→ git add .
+→ git commit
+→ git push
+→ Vercel 자동 배포
 ```
 
-## 주요 URL
+Studio에서 저장하면 다음 파일이 실제 프로젝트에 기록됩니다.
 
 ```text
-/                                         테스트 목록
-/tests/reels-fit                           릴스핏 소개
-/tests/reels-fit/play                      릴스핏 진행
-/tests/fruit-face                          과일상 소개
-/tests/fruit-face/play                     과일상 진행
-/tests/[testSlug]/result/[resultToken]      공유 가능한 결과
+content/test-packs/[testSlug]/pack.json
+public/images/[testSlug]/profiles/*.webp
 ```
 
-## DB가 없어도 결과 링크가 작동하는 이유
+이미지는 브라우저에서 1200×1200 WebP로 변환되며 원본 비율을 유지한 채 여백을 넣어 인물 잘림을 줄입니다.
 
-MVP에서는 답변 번호와 테스트 버전을 짧은 Base64URL 토큰으로 변환합니다.
+## 중요한 운영 원칙
+
+Studio는 **로컬 전용**입니다. Vercel 배포 환경에서는 `/studio`와 `/api/studio/*`가 기본적으로 열리지 않습니다. 제작 내용은 로컬 파일로 저장한 뒤 Git으로 배포합니다.
+
+## JSON 기반 구조
+
+테스트의 질문·결과·테마는 TypeScript가 아니라 JSON에서 읽습니다.
 
 ```text
-{ version, answers, preAnswers }
-→ URL-safe token
-→ 결과 페이지에서 검증
-→ 점수와 결과를 다시 계산
+content/test-packs/
+├─ reels-fit/pack.json
+├─ fruit-face/pack.json
+├─ animal-face/pack.json
+└─ _template/pack.json
 ```
 
-그래서 링크를 다른 기기에서 열어도 같은 결과가 나옵니다.
+공통 엔진이 JSON을 읽어 다음 기능을 자동 생성합니다.
 
-이 토큰은 **인코딩일 뿐 암호화가 아닙니다.** 이름, 이메일, 건강 정보, 비밀 답변처럼 민감한 값은 넣지 마세요. 회원 기능이나 민감 데이터가 필요해지면 Prisma 저장 방식으로 교체해야 합니다.
+- 메인 테스트 카드
+- 소개 페이지
+- 사전 선택
+- 질문 진행
+- 점수 계산
+- 결과 유형 판정
+- 성별/조건별 이미지
+- 결과 추천
+- 메타태그와 Open Graph 이미지
+- 링크 공유
+- 피드·스토리 이미지 저장
+- sitemap
 
-## 프로젝트 구조
-
-```text
-app/
-├─ page.tsx
-├─ tests/[testSlug]/
-│  ├─ page.tsx
-│  ├─ play/page.tsx
-│  └─ result/[resultToken]/
-└─ api/tests/[testSlug]/results/[resultToken]/share-image/
-
-components/test-factory/
-├─ TestRunner.tsx
-├─ TestResultPage.tsx
-├─ RecommendationCard.tsx
-└─ ResultShareActions.tsx
-
-lib/test-factory/
-├─ registry.ts
-├─ token.ts
-├─ scoring.ts
-├─ result.ts
-├─ recommendations.ts
-├─ render-result-image.tsx
-└─ types.ts
-
-test-packs/
-├─ reels-fit/
-└─ fruit-face/
-```
-
-## Test Pack 구조
-
-새 테스트는 `TestPack` 데이터로 정의합니다.
-
-```ts
-{
-  slug,
-  title,
-  axes,
-  questions,
-  profiles,
-  scoring,
-  theme,
-  landing
-}
-```
-
-공통 질문 화면, 점수 계산, 결과 화면, 메타태그, 공유 및 이미지 저장 코드는 다시 만들지 않습니다.
-
-새 테스트 추가 절차는 [`ADD_NEW_TEST.md`](./ADD_NEW_TEST.md)를 참고하세요.
-
-## 릴스 콘텐츠 표시 정책
-
-- 공식 Instagram 개별 게시물: 사용자가 누르면 공식 임베드 로드
-- TikTok 개별 영상: 공식 플레이어
-- 오디오·검색·모음 URL: 포스터 카드 후 원본 링크
-- 자체 제작 또는 정식 허가 MP4: `owned-video` 모드
-
-제3자 영상을 다운로드해 서버에 재업로드하는 방식은 기본 정책으로 사용하지 않습니다.
-
-## 메타태그와 공유
-
-- 테스트 소개 페이지: `index, follow`
-- 개인 결과 페이지: `noindex, nofollow`
-- 결과별 Open Graph·Twitter 이미지
-- Web Share API
-- 링크 복사 폴백
-- 1080×1350 피드 이미지
-- 1080×1920 스토리 이미지
-
-배포 전 `.env.local`:
-
-```env
-NEXT_PUBLIC_SITE_URL=https://your-domain.example
-```
-
-한국어 공유 이미지에 별도 폰트가 필요하면 프로젝트에서 사용 권한이 있는 WOFF/WOFF2만 연결하세요.
-
-```env
-TEST_FACTORY_SHARE_FONT_URL=/fonts/your-korean-font-bold.woff2
-```
-
-폰트 파일은 이 프로젝트에 포함되어 있지 않습니다.
-
-## 검증
-
-이 패키지 제작 과정에서 다음을 확인했습니다.
-
-- TypeScript 소스 검증 통과
-- 릴스핏 가능한 답변 조합 4,096개 결과 분포 확인
-- 과일상 가능한 답변 조합 1,024개 결과 분포 확인
-- 릴스핏 사전 조건 20가지까지 조합한 총 81,920개 추천 결과 검사
-- 모든 경우 4개 추천 슬롯 생성
-- 결과 한 페이지 내 콘텐츠 ID 중복 0건
-- 결과 토큰 인코딩·디코딩 확인
-
-상세 내용은 [`VERIFICATION.md`](./VERIFICATION.md)를 확인하세요.
-
-이 실행 환경에서는 패키지 레지스트리에 접근할 수 없어 실제 `pnpm install → next build`는 실행하지 못했습니다. 로컬에서 설치 후 다음 명령으로 최종 확인하세요.
+## 테스트팩 검증
 
 ```bash
-pnpm typecheck
-pnpm build
+npm run validate:packs
+npm run typecheck
+npm run build
 ```
 
-## 릴스핏 결과 캐릭터 이미지
+한 번에 확인:
 
-릴스핏 8개 결과 유형은 결과 페이지와 공유 이미지에서 서로 다른 캐릭터를 사용합니다.
-
-```text
-public/images/reels-fit/profiles/
-├─ soft-cute.webp
-├─ power-performer.webp
-├─ spotlight-stealer.webp
-├─ detail-cute.webp
-├─ precision-master.webp
-├─ contrast-charmer.webp
-├─ expression-genius.webp
-└─ mood-director.webp
+```bash
+npm run check
 ```
 
-이미지 경로와 대체 텍스트는 `test-packs/reels-fit/profiles.ts`의 `illustration` 필드에서 관리합니다.
-새 결과 유형을 추가할 때도 같은 형식으로 `src`, `alt`, `objectPosition`을 등록하면 결과 페이지와 공유 이미지에 자동 반영됩니다.
+`validate:packs`는 다음을 검사합니다.
 
+- 중복 ID와 누락 필드
+- 잘못된 축·태그 점수
+- 결과 이미지 누락
+- 결과 유형이 실제 응답에서 생성되는지
+- 특정 결과로 과도하게 쏠리는지
 
-## 결과 유형별 이미지
+## 배포 환경 변수
 
-- 릴스핏 결과 이미지 8종: `public/images/reels-fit/profiles`
-- 과일상 결과 이미지 16종(여성 8·남성 8): `public/images/fruit-face/profiles`
-- 결과 페이지, Open Graph, 피드/스토리 이미지에서 동일한 캐릭터를 재사용합니다.
-
-
-## 과일상 성별별 결과 일러스트
-
-과일상 테스트 시작 시 여성 또는 남성을 선택합니다.
-
-```text
-성별 선택
-→ 10개 취향 질문
-→ 과일상 유형 계산
-→ 선택한 성별의 결과 이미지 표시
+```env
+NEXT_PUBLIC_SITE_URL=https://testfit-black.vercel.app
 ```
 
-성별 선택은 점수 계산에 영향을 주지 않고 결과 페이지, Open Graph, 피드 저장 이미지, 스토리 저장 이미지에 사용할 인물 일러스트만 결정합니다.
+빈 문자열이어도 Vercel 자동 도메인 또는 localhost로 안전하게 폴백하도록 보강되어 있습니다.
 
-```text
-public/images/fruit-face/profiles/
-├─ peach-female.webp
-├─ peach-male.webp
-├─ strawberry-female.webp
-├─ strawberry-male.webp
-└─ ... 과일 8종 × 성별 2종
-```
+## 기존 TypeScript Test Pack
 
-`test-packs/fruit-face/profiles.ts`의 `illustrationVariants`에서 여성·남성 이미지를 연결합니다.
+`test-packs/` 폴더는 이전 버전 참고용으로 남아 있지만 런타임의 기준 데이터는 아닙니다. 앞으로는 `content/test-packs/*/pack.json`과 Studio를 사용하세요.
+
+## 새 테스트 제작
+
+자세한 과정은 [`ADD_NEW_TEST.md`](./ADD_NEW_TEST.md)를 참고하세요.

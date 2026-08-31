@@ -1,0 +1,788 @@
+{
+  "id": "animal-face",
+  "slug": "animal-face",
+  "version": 1,
+  "status": "draft",
+  "inputMode": "questionnaire",
+  "recommendationMode": "profile",
+  "title": "동물상 테스트",
+  "shortTitle": "나는 어떤 동물상?",
+  "subtitle": "나와 가장 닮은 동물 이미지는?",
+  "description": "성별 버전을 선택한 뒤 10개의 질문으로 인상 선, 친근한 온도, 활동 에너지, 존재감을 살펴보고 나를 닮은 동물상과 어울리는 컬러·스타일을 알려줘요.",
+  "durationText": "약 1분",
+  "category": "이미지 · 성향",
+  "axes": [
+    {
+      "id": "SOFTNESS",
+      "label": "인상 선",
+      "lowLabel": "날렵함",
+      "highLabel": "부드러움"
+    },
+    {
+      "id": "WARMTH",
+      "label": "친근한 온도",
+      "lowLabel": "시크함",
+      "highLabel": "따뜻함"
+    },
+    {
+      "id": "ENERGY",
+      "label": "활동 에너지",
+      "lowLabel": "차분함",
+      "highLabel": "활동적"
+    },
+    {
+      "id": "PRESENCE",
+      "label": "존재감",
+      "lowLabel": "자연스러움",
+      "highLabel": "강한 인상"
+    }
+  ],
+  "tags": [],
+  "preQuestions": [
+    {
+      "id": "result-gender",
+      "eyebrow": "결과 이미지 설정",
+      "title": "본인의 성별을 선택해 주세요",
+      "description": "선택한 성별에 맞는 인물 일러스트가 결과와 공유 이미지에 표시돼요. 동물상 점수에는 영향을 주지 않아요.",
+      "choices": [
+        {
+          "id": "female",
+          "label": "여성",
+          "description": "여성 인물 일러스트로 결과 보기",
+          "resultVariant": "female"
+        },
+        {
+          "id": "male",
+          "label": "남성",
+          "description": "남성 인물 일러스트로 결과 보기",
+          "resultVariant": "male"
+        }
+      ]
+    }
+  ],
+  "questions": [
+    {
+      "id": "eye-shape",
+      "order": 1,
+      "eyebrow": "눈매",
+      "text": "거울을 볼 때 내 눈매와 더 가까운 쪽은?",
+      "options": [
+        {
+          "id": "eye-shape-a",
+          "label": "둥글고 부드러운 인상이 먼저 보인다.",
+          "axisScores": {
+            "SOFTNESS": 2,
+            "PRESENCE": -1
+          }
+        },
+        {
+          "id": "eye-shape-b",
+          "label": "길고 또렷한 선이 먼저 보인다.",
+          "axisScores": {
+            "SOFTNESS": -2,
+            "PRESENCE": 1
+          }
+        }
+      ]
+    },
+    {
+      "id": "first-impression",
+      "order": 2,
+      "eyebrow": "첫인상",
+      "text": "처음 만난 사람에게 더 자주 듣는 말은?",
+      "options": [
+        {
+          "id": "first-impression-a",
+          "label": "편하고 친근해 보여.",
+          "axisScores": {
+            "WARMTH": 2,
+            "SOFTNESS": 1
+          }
+        },
+        {
+          "id": "first-impression-b",
+          "label": "차분하고 분위기 있어 보여.",
+          "axisScores": {
+            "WARMTH": -2,
+            "PRESENCE": 1
+          }
+        }
+      ]
+    },
+    {
+      "id": "group-role",
+      "order": 3,
+      "eyebrow": "사람들 사이에서",
+      "text": "친구들이 모이면 나는 보통?",
+      "options": [
+        {
+          "id": "group-role-a",
+          "label": "리액션을 크게 하며 분위기를 띄운다.",
+          "axisScores": {
+            "ENERGY": 2,
+            "WARMTH": 1
+          }
+        },
+        {
+          "id": "group-role-b",
+          "label": "필요할 때 한마디로 흐름을 잡는다.",
+          "axisScores": {
+            "ENERGY": -1,
+            "PRESENCE": 2
+          }
+        }
+      ]
+    },
+    {
+      "id": "conflict",
+      "order": 4,
+      "eyebrow": "관계 방식",
+      "text": "친한 사람이 속상해 보일 때 먼저 하는 행동은?",
+      "options": [
+        {
+          "id": "conflict-a",
+          "label": "옆에 있어주며 마음을 편하게 해준다.",
+          "axisScores": {
+            "WARMTH": 2,
+            "SOFTNESS": 1
+          }
+        },
+        {
+          "id": "conflict-b",
+          "label": "문제의 핵심을 짚고 해결 방법을 찾는다.",
+          "axisScores": {
+            "WARMTH": -1,
+            "PRESENCE": 2
+          }
+        }
+      ]
+    },
+    {
+      "id": "weekend",
+      "order": 5,
+      "eyebrow": "주말 속도",
+      "text": "갑자기 하루가 비었다면?",
+      "options": [
+        {
+          "id": "weekend-a",
+          "label": "바로 밖으로 나가 새로운 걸 해본다.",
+          "axisScores": {
+            "ENERGY": 2
+          }
+        },
+        {
+          "id": "weekend-b",
+          "label": "조용한 곳에서 내 속도로 쉰다.",
+          "axisScores": {
+            "ENERGY": -2
+          }
+        }
+      ]
+    },
+    {
+      "id": "style-line",
+      "order": 6,
+      "eyebrow": "스타일 선호",
+      "text": "더 나답다고 느끼는 스타일은?",
+      "options": [
+        {
+          "id": "style-line-a",
+          "label": "둥근 실루엣과 편안한 소재",
+          "axisScores": {
+            "SOFTNESS": 2,
+            "WARMTH": 1
+          }
+        },
+        {
+          "id": "style-line-b",
+          "label": "선이 또렷한 미니멀 스타일",
+          "axisScores": {
+            "SOFTNESS": -2,
+            "PRESENCE": 2
+          }
+        }
+      ]
+    },
+    {
+      "id": "compliment",
+      "order": 7,
+      "eyebrow": "매력 포인트",
+      "text": "더 기분 좋은 칭찬은?",
+      "options": [
+        {
+          "id": "compliment-a",
+          "label": "귀엽고 가까이 가기 편해 보여.",
+          "axisScores": {
+            "SOFTNESS": 2,
+            "WARMTH": 1
+          }
+        },
+        {
+          "id": "compliment-b",
+          "label": "눈빛이 강하고 분위기가 독보적이야.",
+          "axisScores": {
+            "SOFTNESS": -1,
+            "PRESENCE": 2
+          }
+        }
+      ]
+    },
+    {
+      "id": "reaction",
+      "order": 8,
+      "eyebrow": "표현 방식",
+      "text": "좋아하는 일이 생겼을 때 나는?",
+      "options": [
+        {
+          "id": "reaction-a",
+          "label": "표정과 말투에 바로 티가 난다.",
+          "axisScores": {
+            "ENERGY": 2,
+            "WARMTH": 1
+          }
+        },
+        {
+          "id": "reaction-b",
+          "label": "겉으로는 차분하지만 오래 기억한다.",
+          "axisScores": {
+            "ENERGY": -1,
+            "WARMTH": -1,
+            "PRESENCE": 1
+          }
+        }
+      ]
+    },
+    {
+      "id": "photo",
+      "order": 9,
+      "eyebrow": "사진 속 나",
+      "text": "사진에서 더 마음에 드는 표정은?",
+      "options": [
+        {
+          "id": "photo-a",
+          "label": "눈웃음이 보이는 밝은 미소",
+          "axisScores": {
+            "WARMTH": 2,
+            "SOFTNESS": 1
+          }
+        },
+        {
+          "id": "photo-b",
+          "label": "표정은 작지만 시선이 또렷한 모습",
+          "axisScores": {
+            "WARMTH": -1,
+            "PRESENCE": 2
+          }
+        }
+      ]
+    },
+    {
+      "id": "choice",
+      "order": 10,
+      "eyebrow": "마지막 선택",
+      "text": "중요한 선택을 할 때 더 가까운 쪽은?",
+      "options": [
+        {
+          "id": "choice-a",
+          "label": "주변 사람의 마음과 조화를 함께 생각한다.",
+          "axisScores": {
+            "WARMTH": 2,
+            "SOFTNESS": 1
+          }
+        },
+        {
+          "id": "choice-b",
+          "label": "내 기준을 정한 뒤 흔들리지 않는다.",
+          "axisScores": {
+            "WARMTH": -2,
+            "PRESENCE": 2
+          }
+        }
+      ]
+    }
+  ],
+  "profiles": [
+    {
+      "id": "puppy",
+      "title": "강아지상",
+      "emoji": "🐶",
+      "subtitle": "밝은 눈빛과 친근한 에너지로 먼저 다가가는 타입",
+      "description": "표정과 리액션이 풍부하고 사람 사이의 온도를 빠르게 높여요. 자연스러운 미소와 편안한 분위기가 가장 큰 매력이에요.",
+      "axisTargets": {
+        "SOFTNESS": 70,
+        "WARMTH": 90,
+        "ENERGY": 75,
+        "PRESENCE": 45
+      },
+      "strengths": [
+        "밝은 리액션",
+        "친근한 첫인상",
+        "따뜻한 관계"
+      ],
+      "shareText": "나는 강아지상 🐶 밝은 눈빛과 친근한 에너지로 먼저 다가가는 타입!",
+      "theme": {
+        "primary": "#F0A35A",
+        "secondary": "#FFD27A",
+        "accent": "#FFF1AE",
+        "emoji": "🐶"
+      },
+      "recommendations": [
+        {
+          "slotId": "COLOR",
+          "kicker": "찰떡 컬러",
+          "title": "선샤인 코랄",
+          "description": "밝은 표정과 친근한 온도를 살리는 생기 있는 코랄이에요.",
+          "emoji": "🎨",
+          "value": "#F28D68"
+        },
+        {
+          "slotId": "STYLE",
+          "kicker": "잘 어울리는 무드",
+          "title": "프렌들리 캐주얼",
+          "description": "편안한 니트와 데님처럼 자연스럽게 다가가는 스타일이 잘 맞아요.",
+          "emoji": "👕"
+        },
+        {
+          "slotId": "BEST_MATCH",
+          "kicker": "잘 맞는 동물상",
+          "title": "곰상",
+          "description": "포근한 곰상이 밝은 에너지를 안정적으로 받아줘요.",
+          "emoji": "🐻"
+        },
+        {
+          "slotId": "CONTRAST",
+          "kicker": "반전 조합",
+          "title": "고양이상",
+          "description": "차분한 고양이상과 만나면 서로 다른 템포가 매력적인 조합이 돼요.",
+          "emoji": "🐱"
+        }
+      ]
+    },
+    {
+      "id": "cat",
+      "title": "고양이상",
+      "emoji": "🐱",
+      "subtitle": "조용한 눈빛과 자기만의 리듬이 매력적인 타입",
+      "description": "가까워지기 전에는 차분하고 독립적으로 보이지만, 신뢰하는 사람에게는 섬세하고 다정한 모습을 보여줘요.",
+      "axisTargets": {
+        "SOFTNESS": 45,
+        "WARMTH": 35,
+        "ENERGY": 30,
+        "PRESENCE": 75
+      },
+      "strengths": [
+        "독립적인 분위기",
+        "섬세한 관찰력",
+        "은근한 다정함"
+      ],
+      "shareText": "나는 고양이상 🐱 조용한 눈빛과 자기만의 리듬이 매력적인 타입!",
+      "theme": {
+        "primary": "#4A4656",
+        "secondary": "#877E9B",
+        "accent": "#F1D56B",
+        "emoji": "🐱"
+      },
+      "recommendations": [
+        {
+          "slotId": "COLOR",
+          "kicker": "찰떡 컬러",
+          "title": "스모키 모브",
+          "description": "조용한 눈빛과 독립적인 분위기를 살리는 차분한 모브예요.",
+          "emoji": "🎨",
+          "value": "#776B88"
+        },
+        {
+          "slotId": "STYLE",
+          "kicker": "잘 어울리는 무드",
+          "title": "미니멀 시크",
+          "description": "선이 정돈된 셔츠와 작은 실버 액세서리가 잘 맞아요.",
+          "emoji": "🖤"
+        },
+        {
+          "slotId": "BEST_MATCH",
+          "kicker": "잘 맞는 동물상",
+          "title": "사슴상",
+          "description": "서로의 조용한 시간을 존중하며 깊게 가까워지는 조합이에요.",
+          "emoji": "🦌"
+        },
+        {
+          "slotId": "CONTRAST",
+          "kicker": "반전 조합",
+          "title": "강아지상",
+          "description": "밝은 강아지상이 숨은 다정함을 자연스럽게 끌어내요.",
+          "emoji": "🐶"
+        }
+      ]
+    },
+    {
+      "id": "fox",
+      "title": "여우상",
+      "emoji": "🦊",
+      "subtitle": "날렵한 감각과 영리한 존재감이 돋보이는 타입",
+      "description": "상황을 빠르게 읽고 자신에게 어울리는 표현을 잘 선택해요. 또렷한 취향과 재치 있는 반응이 오래 기억돼요.",
+      "axisTargets": {
+        "SOFTNESS": 20,
+        "WARMTH": 35,
+        "ENERGY": 65,
+        "PRESENCE": 95
+      },
+      "strengths": [
+        "빠른 감각",
+        "또렷한 취향",
+        "재치 있는 표현"
+      ],
+      "shareText": "나는 여우상 🦊 날렵한 감각과 영리한 존재감이 돋보이는 타입!",
+      "theme": {
+        "primary": "#D86B32",
+        "secondary": "#F3A248",
+        "accent": "#FFE19C",
+        "emoji": "🦊"
+      },
+      "recommendations": [
+        {
+          "slotId": "COLOR",
+          "kicker": "찰떡 컬러",
+          "title": "폭스 오렌지",
+          "description": "영리한 존재감과 선명한 취향을 강조하는 오렌지예요.",
+          "emoji": "🎨",
+          "value": "#D96A32"
+        },
+        {
+          "slotId": "STYLE",
+          "kicker": "잘 어울리는 무드",
+          "title": "샤프 포인트",
+          "description": "날렵한 재킷과 한 가지 강한 액세서리로 포인트를 주세요.",
+          "emoji": "🕶️"
+        },
+        {
+          "slotId": "BEST_MATCH",
+          "kicker": "잘 맞는 동물상",
+          "title": "고양이상",
+          "description": "서로의 감각과 독립성을 재미있게 존중하는 조합이에요.",
+          "emoji": "🐱"
+        },
+        {
+          "slotId": "CONTRAST",
+          "kicker": "반전 조합",
+          "title": "토끼상",
+          "description": "부드러운 토끼상과 만나면 영리한 매력이 한층 따뜻하게 보여요.",
+          "emoji": "🐰"
+        }
+      ]
+    },
+    {
+      "id": "rabbit",
+      "title": "토끼상",
+      "emoji": "🐰",
+      "subtitle": "말랑한 인상과 섬세한 반응으로 호감을 주는 타입",
+      "description": "부드러운 표정과 조심스러운 배려가 자연스럽게 드러나요. 작고 귀여운 디테일을 살릴수록 매력이 커져요.",
+      "axisTargets": {
+        "SOFTNESS": 95,
+        "WARMTH": 75,
+        "ENERGY": 40,
+        "PRESENCE": 25
+      },
+      "strengths": [
+        "부드러운 눈매",
+        "섬세한 배려",
+        "사랑스러운 디테일"
+      ],
+      "shareText": "나는 토끼상 🐰 말랑한 인상과 섬세한 반응으로 호감을 주는 타입!",
+      "theme": {
+        "primary": "#E99DB8",
+        "secondary": "#F7CAD9",
+        "accent": "#FFF0B8",
+        "emoji": "🐰"
+      },
+      "recommendations": [
+        {
+          "slotId": "COLOR",
+          "kicker": "찰떡 컬러",
+          "title": "밀키 핑크",
+          "description": "말랑한 인상과 섬세한 분위기를 살리는 부드러운 핑크예요.",
+          "emoji": "🎨",
+          "value": "#ECA8BE"
+        },
+        {
+          "slotId": "STYLE",
+          "kicker": "잘 어울리는 무드",
+          "title": "소프트 로맨틱",
+          "description": "둥근 실루엣과 가벼운 리본 디테일이 잘 맞아요.",
+          "emoji": "🎀"
+        },
+        {
+          "slotId": "BEST_MATCH",
+          "kicker": "잘 맞는 동물상",
+          "title": "강아지상",
+          "description": "밝고 따뜻한 강아지상과 편안하게 웃음이 이어지는 조합이에요.",
+          "emoji": "🐶"
+        },
+        {
+          "slotId": "CONTRAST",
+          "kicker": "반전 조합",
+          "title": "늑대상",
+          "description": "강한 늑대상과 만나면 부드러운 매력이 더 선명해져요.",
+          "emoji": "🐺"
+        }
+      ]
+    },
+    {
+      "id": "deer",
+      "title": "사슴상",
+      "emoji": "🦌",
+      "subtitle": "맑고 차분한 분위기 속에 우아함이 있는 타입",
+      "description": "크게 드러내지 않아도 시선과 자세에서 정돈된 분위기가 느껴져요. 조용하지만 존재감이 오래 남는 편이에요.",
+      "axisTargets": {
+        "SOFTNESS": 70,
+        "WARMTH": 50,
+        "ENERGY": 20,
+        "PRESENCE": 65
+      },
+      "strengths": [
+        "맑은 분위기",
+        "정돈된 우아함",
+        "차분한 존재감"
+      ],
+      "shareText": "나는 사슴상 🦌 맑고 차분한 분위기 속에 우아함이 있는 타입!",
+      "theme": {
+        "primary": "#A9795F",
+        "secondary": "#D7B39B",
+        "accent": "#EAD98E",
+        "emoji": "🦌"
+      },
+      "recommendations": [
+        {
+          "slotId": "COLOR",
+          "kicker": "찰떡 컬러",
+          "title": "세이지 베이지",
+          "description": "맑고 우아한 분위기를 조용하게 살리는 컬러예요.",
+          "emoji": "🎨",
+          "value": "#AFA58A"
+        },
+        {
+          "slotId": "STYLE",
+          "kicker": "잘 어울리는 무드",
+          "title": "클린 클래식",
+          "description": "단정한 셔츠와 얇은 소재처럼 정돈된 스타일이 잘 맞아요.",
+          "emoji": "🕊️"
+        },
+        {
+          "slotId": "BEST_MATCH",
+          "kicker": "잘 맞는 동물상",
+          "title": "고양이상",
+          "description": "차분한 시선과 거리감을 편안하게 이해하는 조합이에요.",
+          "emoji": "🐱"
+        },
+        {
+          "slotId": "CONTRAST",
+          "kicker": "반전 조합",
+          "title": "햄스터상",
+          "description": "활발한 햄스터상이 새로운 표정을 자연스럽게 끌어내요.",
+          "emoji": "🐹"
+        }
+      ]
+    },
+    {
+      "id": "bear",
+      "title": "곰상",
+      "emoji": "🐻",
+      "subtitle": "든든하고 포근한 온도로 사람을 편하게 하는 타입",
+      "description": "과한 표현보다 꾸준한 행동으로 신뢰를 쌓아요. 함께 있으면 긴장이 풀리는 안정감이 가장 큰 매력이에요.",
+      "axisTargets": {
+        "SOFTNESS": 70,
+        "WARMTH": 95,
+        "ENERGY": 25,
+        "PRESENCE": 50
+      },
+      "strengths": [
+        "포근한 안정감",
+        "꾸준한 신뢰",
+        "편안한 온도"
+      ],
+      "shareText": "나는 곰상 🐻 든든하고 포근한 온도로 사람을 편하게 하는 타입!",
+      "theme": {
+        "primary": "#8A654B",
+        "secondary": "#C49B73",
+        "accent": "#F0D18A",
+        "emoji": "🐻"
+      },
+      "recommendations": [
+        {
+          "slotId": "COLOR",
+          "kicker": "찰떡 컬러",
+          "title": "웜 카멜",
+          "description": "포근한 안정감과 신뢰를 살리는 따뜻한 카멜이에요.",
+          "emoji": "🎨",
+          "value": "#A77755"
+        },
+        {
+          "slotId": "STYLE",
+          "kicker": "잘 어울리는 무드",
+          "title": "코지 레이어드",
+          "description": "부드러운 니트와 넉넉한 아우터가 편안한 매력을 살려줘요.",
+          "emoji": "🧸"
+        },
+        {
+          "slotId": "BEST_MATCH",
+          "kicker": "잘 맞는 동물상",
+          "title": "강아지상",
+          "description": "따뜻한 강아지상과 함께하면 편안하고 밝은 관계가 돼요.",
+          "emoji": "🐶"
+        },
+        {
+          "slotId": "CONTRAST",
+          "kicker": "반전 조합",
+          "title": "여우상",
+          "description": "감각적인 여우상이 새로운 선택을 열어주는 조합이에요.",
+          "emoji": "🦊"
+        }
+      ]
+    },
+    {
+      "id": "hamster",
+      "title": "햄스터상",
+      "emoji": "🐹",
+      "subtitle": "작고 빠른 리액션과 귀여운 활력이 넘치는 타입",
+      "description": "궁금한 것이 많고 감정이 표정에 솔직하게 보여요. 소소한 즐거움을 크게 만드는 능력이 있어요.",
+      "axisTargets": {
+        "SOFTNESS": 90,
+        "WARMTH": 80,
+        "ENERGY": 95,
+        "PRESENCE": 20
+      },
+      "strengths": [
+        "빠른 리액션",
+        "귀여운 활력",
+        "솔직한 표정"
+      ],
+      "shareText": "나는 햄스터상 🐹 작고 빠른 리액션과 귀여운 활력이 넘치는 타입!",
+      "theme": {
+        "primary": "#E6A24C",
+        "secondary": "#F6C976",
+        "accent": "#FFF0A7",
+        "emoji": "🐹"
+      },
+      "recommendations": [
+        {
+          "slotId": "COLOR",
+          "kicker": "찰떡 컬러",
+          "title": "버터 옐로",
+          "description": "빠르고 귀여운 활력을 보여주는 밝은 옐로예요.",
+          "emoji": "🎨",
+          "value": "#F2C75C"
+        },
+        {
+          "slotId": "STYLE",
+          "kicker": "잘 어울리는 무드",
+          "title": "플레이풀 캐주얼",
+          "description": "작은 패턴과 컬러 포인트를 더하면 표정이 더 살아나요.",
+          "emoji": "🧢"
+        },
+        {
+          "slotId": "BEST_MATCH",
+          "kicker": "잘 맞는 동물상",
+          "title": "토끼상",
+          "description": "서로의 귀여운 디테일을 알아보는 말랑한 조합이에요.",
+          "emoji": "🐰"
+        },
+        {
+          "slotId": "CONTRAST",
+          "kicker": "반전 조합",
+          "title": "사슴상",
+          "description": "차분한 사슴상이 빠른 에너지에 안정감을 더해줘요.",
+          "emoji": "🦌"
+        }
+      ]
+    },
+    {
+      "id": "wolf",
+      "title": "늑대상",
+      "emoji": "🐺",
+      "subtitle": "차가운 듯 선명한 눈빛과 강한 기준을 가진 타입",
+      "description": "혼자서도 방향을 잘 정하고 쉽게 흔들리지 않아요. 말보다 태도에서 카리스마와 신뢰가 드러나는 편이에요.",
+      "axisTargets": {
+        "SOFTNESS": 10,
+        "WARMTH": 10,
+        "ENERGY": 45,
+        "PRESENCE": 95
+      },
+      "strengths": [
+        "강한 기준",
+        "선명한 눈빛",
+        "독립적인 카리스마"
+      ],
+      "shareText": "나는 늑대상 🐺 차가운 듯 선명한 눈빛과 강한 기준을 가진 타입!",
+      "theme": {
+        "primary": "#3E4858",
+        "secondary": "#6F7C8E",
+        "accent": "#C9D5E4",
+        "emoji": "🐺"
+      },
+      "recommendations": [
+        {
+          "slotId": "COLOR",
+          "kicker": "찰떡 컬러",
+          "title": "미드나잇 블루",
+          "description": "강한 기준과 차분한 카리스마를 살리는 깊은 블루예요.",
+          "emoji": "🎨",
+          "value": "#34465F"
+        },
+        {
+          "slotId": "STYLE",
+          "kicker": "잘 어울리는 무드",
+          "title": "모노크롬 테일러드",
+          "description": "선이 날렵한 재킷과 절제된 액세서리가 잘 맞아요.",
+          "emoji": "🖤"
+        },
+        {
+          "slotId": "BEST_MATCH",
+          "kicker": "잘 맞는 동물상",
+          "title": "여우상",
+          "description": "강한 감각과 독립성을 서로 존중하는 선명한 조합이에요.",
+          "emoji": "🦊"
+        },
+        {
+          "slotId": "CONTRAST",
+          "kicker": "반전 조합",
+          "title": "토끼상",
+          "description": "부드러운 토끼상과 함께하면 숨은 보호 본능이 자연스럽게 보여요.",
+          "emoji": "🐰"
+        }
+      ]
+    }
+  ],
+  "scoring": {
+    "axisWeight": 1,
+    "tagWeight": 0,
+    "secondaryThreshold": 7
+  },
+  "theme": {
+    "primary": "#5F6D5B",
+    "secondary": "#C78B63",
+    "accent": "#F2D682",
+    "surface": "#FFFFFF",
+    "background": "#F7F4EE",
+    "text": "#27241F",
+    "muted": "#776F65",
+    "emoji": "🐾"
+  },
+  "landing": {
+    "eyebrow": "2 GENDER VERSIONS · 10 QUESTIONS · 8 ANIMALS",
+    "ctaLabel": "내 동물상 알아보기",
+    "highlights": [
+      {
+        "value": "10",
+        "label": "이미지 질문"
+      },
+      {
+        "value": "8",
+        "label": "동물 유형"
+      },
+      {
+        "value": "4",
+        "label": "결과 추천"
+      }
+    ],
+    "notice": "얼굴 사진을 분석하는 검사가 아닌 재미용 질문 테스트예요. 성별 선택은 결과 일러스트에만 반영돼요."
+  }
+}

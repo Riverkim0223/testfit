@@ -64,7 +64,7 @@ export async function getPublicTestResult(
       : undefined;
 
   const recommendations =
-    pack.id === "reels-fit"
+    pack.recommendationMode === "reels-catalog"
       ? buildReelsRecommendations(pack, vector, payload, primary.profile.title)
       : buildProfileRecommendations(primary.profile);
 
